@@ -1,781 +1,297 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ms">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MindCare Hospital Portal</title>
+<title>MindCare Hospital Portal v7 Profesional</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Source+Serif+4:wght@600;700&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --bg: #FAFCFE;
-    --panel: #FFFFFF;
-    --blue-50: #EAF4FB;
-    --blue-100: #D3E9F7;
-    --blue-500: #2E7DB5;
-    --blue-600: #1F6699;
-    --blue-700: #16507E;
-    --navy: #16283D;
-    --text: #223142;
-    --muted: #5E7285;
-    --border: #DCE7F0;
-    --green: #2E8B6F;
-    --amber: #C08A1E;
-    --red: #C6483E;
-    --radius: 10px;
-    --serif: 'Source Serif 4', Georgia, serif;
-    --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  }
-  *{box-sizing:border-box;}
-  body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.55;}
-  h1,h2,h3{font-family:var(--serif);color:var(--navy);margin:0 0 .4em;font-weight:600;}
-  a{color:var(--blue-600);}
-  button{font-family:var(--sans);cursor:pointer;}
-  .app{max-width:1100px;margin:0 auto;padding:0 24px 80px;}
+:root{--bg:#f3f7fb;--panel:#fff;--ink:#102235;--text:#26384d;--muted:#66788d;--line:#d9e6f1;--primary:#1768aa;--primary2:#0f4d86;--soft:#eaf4fb;--green:#1f8a68;--amber:#b7791f;--red:#c24135;--purple:#6655c8;--shadow:0 24px 55px rgba(16,34,53,.10);--radius:18px;--sans:'Inter',system-ui,-apple-system,Segoe UI,sans-serif;--serif:'Source Serif 4',Georgia,serif}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#eef7ff,#f8fbfd 38%,var(--bg));font-family:var(--sans);color:var(--text);line-height:1.55}button,input,select,textarea{font-family:var(--sans)}button{cursor:pointer}.hide{display:none!important}.muted{color:var(--muted);font-size:14px}.small{font-size:12px;color:var(--muted)}
+.login-shell{min-height:100vh;display:grid;place-items:center;padding:28px;background:radial-gradient(circle at 18% 12%,#d8ecfb 0 18%,transparent 19%),radial-gradient(circle at 85% 18%,#e7f0fb 0 20%,transparent 21%),linear-gradient(135deg,#f7fbff,#eef6fb)}
+.login-card{width:min(1050px,100%);display:grid;grid-template-columns:1.05fr .95fr;background:#fff;border:1px solid var(--line);border-radius:30px;box-shadow:var(--shadow);overflow:hidden}.login-art{background:linear-gradient(145deg,#102846,#1768aa);padding:48px;color:#fff;position:relative;overflow:hidden}.login-art:after{content:"";position:absolute;width:300px;height:300px;border-radius:50%;right:-110px;bottom:-110px;background:rgba(255,255,255,.10)}.logo-mark{width:58px;height:58px;border-radius:18px;background:#fff;color:#1768aa;display:grid;place-items:center;font-weight:900;font-family:var(--serif);font-size:22px}.login-art h1{font-family:var(--serif);font-size:38px;margin:18px 0 10px}.login-art p{color:#dceeff;max-width:460px}.feature-list{margin-top:30px;display:grid;gap:12px}.feature{display:flex;gap:12px;background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.16);padding:14px;border-radius:16px}.feature b{display:block}.feature span{font-size:13px;color:#d7ebfb}.login-form{padding:42px}.seg{display:grid;grid-template-columns:1fr 1fr;margin:22px 0;background:#edf5fb;border:1px solid var(--line);border-radius:15px;padding:5px}.seg button{border:none;background:transparent;border-radius:11px;padding:12px;font-weight:900;color:var(--muted)}.seg button.active{background:#fff;color:var(--primary);box-shadow:0 6px 18px rgba(16,34,53,.08)}
+label{display:block;font-size:13px;font-weight:800;color:var(--ink);margin:14px 0 7px}input,select,textarea{width:100%;border:1px solid var(--line);border-radius:13px;padding:12px 14px;font-size:14px;background:#fff;color:var(--text)}textarea{resize:vertical;min-height:96px}.btn{border:none;border-radius:13px;padding:11px 15px;font-weight:900;font-size:14px;transition:.16s}.btn-primary{background:var(--primary);color:#fff}.btn-primary:hover{background:var(--primary2);transform:translateY(-1px)}.btn-soft{background:var(--soft);color:var(--primary)}.btn-outline{background:#fff;color:var(--primary);border:1px solid var(--line)}.btn-danger{background:var(--red);color:#fff}.btn-green{background:var(--green);color:#fff}.btn-amber{background:var(--amber);color:#fff}.full{width:100%;margin-top:18px}.link-btn{border:none;background:none;color:var(--primary);font-weight:900;padding:0}.topbar{height:70px;background:rgba(255,255,255,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 26px;position:sticky;top:0;z-index:20}.brand{display:flex;align-items:center;gap:12px}.brand .mark{width:44px;height:44px;border-radius:14px;background:linear-gradient(145deg,var(--primary),var(--primary2));display:grid;place-items:center;color:#fff;font-weight:900;font-family:var(--serif)}.brand b{color:var(--ink)}.brand small{display:block;color:var(--muted);margin-top:-2px}.user-pill{display:flex;align-items:center;gap:10px}.pill{background:var(--soft);color:var(--primary2);border:1px solid #cfe3f4;border-radius:999px;padding:8px 13px;font-size:13px;font-weight:900}.layout{display:grid;grid-template-columns:282px 1fr;min-height:calc(100vh - 70px)}.sidebar{background:#102238;color:#dcecff;padding:22px;border-right:1px solid #0b1b2e}.side-title{font-size:12px;color:#8fb7d8;text-transform:uppercase;letter-spacing:.12em;margin:14px 10px}.nav{display:grid;gap:8px}.nav button{border:none;background:transparent;color:#dcecff;text-align:left;padding:12px 14px;border-radius:14px;font-weight:900;display:flex;gap:10px;align-items:center}.nav button:hover,.nav button.active{background:rgba(255,255,255,.12);color:#fff}.main{padding:28px;max-width:1320px;width:100%;margin:0 auto}.page{display:none;animation:fade .2s ease}.page.active{display:block}@keyframes fade{from{opacity:.45;transform:translateY(6px)}to{opacity:1;transform:none}}.hero{background:linear-gradient(135deg,#0f4d86,#1d77bd);border-radius:26px;padding:34px;color:#fff;box-shadow:var(--shadow);position:relative;overflow:hidden}.hero:after{content:"";position:absolute;right:-75px;top:-85px;width:260px;height:260px;border-radius:50%;background:rgba(255,255,255,.12)}.hero h2{font-family:var(--serif);font-size:34px;margin:0 0 8px;color:#fff}.hero p{color:#dff0ff;max-width:720px}.grid{display:grid;gap:18px}.grid-2{grid-template-columns:repeat(2,1fr)}.grid-3{grid-template-columns:repeat(3,1fr)}.grid-4{grid-template-columns:repeat(4,1fr)}.card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:20px;box-shadow:0 10px 32px rgba(16,34,53,.04)}.card h3{margin:0 0 8px;color:var(--ink);font-size:18px}.section-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:16px}.section-head h2{font-family:var(--serif);font-size:29px;color:var(--ink);margin:0}.stat{display:flex;align-items:center;justify-content:space-between;text-align:left}.click-card{cursor:pointer;transition:.18s ease}.click-card:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:#bfd8ee}.stat .num{font-size:34px;font-weight:900;color:var(--ink)}.stat .ico{width:48px;height:48px;border-radius:16px;background:var(--soft);display:grid;place-items:center;font-size:22px}.badge{display:inline-flex;align-items:center;border-radius:999px;padding:4px 10px;font-size:12px;font-weight:900}.low{background:#e4f5ef;color:var(--green)}.med{background:#fff2d9;color:var(--amber)}.urgent{background:#fde8e6;color:var(--red)}.info{background:#eaf4fb;color:var(--primary)}.purple{background:#eeeafd;color:var(--purple)}table{width:100%;border-collapse:collapse;font-size:13.5px}th,td{text-align:left;padding:12px;border-bottom:1px solid var(--line);vertical-align:top}th{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}tr:hover td{background:#f8fbfe}.toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.toolbar input,.toolbar select{width:auto;min-width:220px}.actions{display:flex;gap:7px;flex-wrap:wrap}.slots{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.slot.selected{background:var(--primary);color:#fff}.article{border-left:4px solid var(--primary);background:#fff;border-radius:16px;padding:17px;border-top:1px solid var(--line);border-right:1px solid var(--line);border-bottom:1px solid var(--line)}.notice{background:#fff7e8;border:1px solid #f3d19a;color:#7b4c00;border-radius:15px;padding:14px;margin-bottom:14px}.mini-cal{display:grid;grid-template-columns:repeat(7,1fr);gap:8px}.day{background:#f8fbfe;border:1px solid var(--line);border-radius:14px;padding:12px;min-height:92px}.day b{font-size:13px;color:var(--ink)}.day span{display:block;font-size:12px;color:var(--muted);margin-top:8px}.quick-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.profile-box{display:grid;grid-template-columns:1fr 1fr;gap:18px}.modal-overlay{position:fixed;inset:0;background:rgba(10,22,35,.58);display:none;align-items:center;justify-content:center;padding:22px;z-index:99}.modal-overlay.active{display:flex}.modal{background:#fff;max-width:460px;width:100%;border-radius:24px;padding:28px;text-align:center;box-shadow:var(--shadow)}.modal .big{font-size:38px}.footer-note{margin:30px 0;color:var(--muted);font-size:12px;text-align:center}@media(max-width:980px){.login-card{grid-template-columns:1fr}.login-art{display:none}.layout{grid-template-columns:1fr}.sidebar{position:static}.grid-2,.grid-3,.grid-4,.quick-grid,.profile-box{grid-template-columns:1fr}.toolbar input,.toolbar select{width:100%}.slots{grid-template-columns:1fr}.topbar{height:auto;gap:10px;flex-wrap:wrap;padding:14px}.mini-cal{grid-template-columns:1fr}}
 
-  /* Top bar */
-  .topbar{background:var(--navy);color:#fff;padding:10px 24px;font-size:13px;display:flex;justify-content:space-between;align-items:center;}
-  .topbar a{color:#BFE0FF;text-decoration:none;font-weight:600;}
-  .topbar .crisis-link{background:var(--red);color:#fff;padding:5px 12px;border-radius:20px;font-weight:600;text-decoration:none;}
+/* === v7 polish: professional login/register + education center === */
+.login-shell{padding:34px;background:radial-gradient(circle at 12% 12%,rgba(23,104,170,.16),transparent 28%),radial-gradient(circle at 88% 14%,rgba(102,85,200,.12),transparent 30%),linear-gradient(135deg,#f8fbff,#edf6fd 48%,#f5f8fb)}
+.login-card{width:min(1180px,100%);grid-template-columns:.98fr 1.02fr;border-radius:34px;border:1px solid rgba(217,230,241,.95);box-shadow:0 30px 80px rgba(16,34,53,.16)}
+.login-art{padding:54px;background:linear-gradient(155deg,#102238 0%,#123f6f 52%,#1768aa 100%)}
+.login-art h1{font-size:41px;letter-spacing:-.02em}.login-art p{font-size:15.5px}.logo-mark{box-shadow:0 14px 34px rgba(0,0,0,.16)}
+.login-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:28px}.login-stat{background:rgba(255,255,255,.11);border:1px solid rgba(255,255,255,.18);border-radius:16px;padding:13px}.login-stat b{display:block;font-size:20px;color:#fff}.login-stat span{display:block;font-size:11.5px;color:#cfe7fb;margin-top:2px}
+.login-form{padding:0;background:#fbfdff}.auth-panel{padding:34px 38px}.auth-head{display:flex;gap:12px;align-items:center;margin-bottom:14px}.auth-icon{width:48px;height:48px;border-radius:16px;background:var(--soft);display:grid;place-items:center;font-size:22px}.auth-title h2{margin:0;color:var(--ink);font-size:25px}.auth-title p{margin:2px 0 0}.auth-card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:20px;box-shadow:0 12px 34px rgba(16,34,53,.05);margin-top:16px}.auth-card h3{margin:0 0 4px;color:var(--ink);font-size:18px}.input-wrap{position:relative}.input-wrap span{position:absolute;left:13px;top:50%;transform:translateY(-50%);font-size:15px;color:var(--muted)}.input-wrap input{padding-left:38px}.helper-row{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-top:10px}.demo-box{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}.demo-chip{background:#f7fbfe;border:1px dashed #bdd5ea;border-radius:14px;padding:11px;font-size:12.5px;color:var(--muted)}.demo-chip b{display:block;color:var(--ink);font-size:13px}.auth-divider{display:flex;align-items:center;gap:12px;margin:20px 0}.auth-divider:before,.auth-divider:after{content:"";height:1px;background:var(--line);flex:1}.auth-divider span{font-size:12px;font-weight:900;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}.register-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.register-note{background:#f2f8fd;border:1px solid #d2e6f5;color:#33516b;border-radius:16px;padding:12px;font-size:12.5px;margin-top:12px}.seg{margin:16px 0}.seg button{font-size:13px}.auth-panel .full{margin-top:14px}
+.edu-hero{background:linear-gradient(135deg,#102238,#1768aa);border-radius:26px;padding:26px;color:#fff;box-shadow:var(--shadow);margin-bottom:18px;display:grid;grid-template-columns:1.25fr .75fr;gap:20px;align-items:center;overflow:hidden;position:relative}.edu-hero:after{content:"";position:absolute;width:220px;height:220px;border-radius:50%;right:-70px;top:-80px;background:rgba(255,255,255,.12)}.edu-hero h2{font-family:var(--serif);font-size:31px;margin:0 0 8px;color:#fff}.edu-hero p{color:#dff0ff;margin:0;max-width:720px}.edu-kpis{display:grid;grid-template-columns:1fr 1fr;gap:10px;position:relative;z-index:1}.edu-kpi{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);border-radius:16px;padding:14px}.edu-kpi b{display:block;font-size:22px}.edu-kpi span{font-size:12px;color:#d7ebfb}.edu-tools{display:flex;justify-content:space-between;align-items:center;gap:12px;background:#fff;border:1px solid var(--line);border-radius:20px;padding:14px;margin-bottom:18px;box-shadow:0 10px 28px rgba(16,34,53,.04)}.edu-tools input{min-width:280px}.edu-filter{display:flex;gap:8px;flex-wrap:wrap}.edu-filter button{border:1px solid var(--line);background:#fff;color:var(--muted);border-radius:999px;padding:9px 12px;font-weight:900}.edu-filter button:hover,.edu-filter button.active{background:var(--soft);color:var(--primary);border-color:#cde3f4}.education-grid-pro{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}.edu-card{background:#fff;border:1px solid var(--line);border-radius:24px;padding:0;box-shadow:0 12px 34px rgba(16,34,53,.05);overflow:hidden;transition:.18s}.edu-card:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:#bdd8ee}.edu-card-top{padding:18px 18px 14px;border-bottom:1px solid var(--line);background:linear-gradient(180deg,#fbfdff,#f6fbff)}.edu-tagline{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}.edu-icon{width:42px;height:42px;border-radius:15px;background:var(--soft);display:grid;place-items:center;font-size:21px}.edu-card h3{font-size:19px;margin:0 0 8px;color:var(--ink)}.edu-body{padding:18px}.edu-section-title{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:900;margin:0 0 10px}.step-list{display:grid;gap:9px;margin:0;padding:0;list-style:none}.step-list li{display:flex;gap:10px;align-items:flex-start;background:#f8fbfe;border:1px solid #e2edf6;border-radius:14px;padding:10px;font-size:13.5px}.step-list li b{min-width:24px;height:24px;border-radius:50%;display:grid;place-items:center;background:#eaf4fb;color:var(--primary);font-size:12px}.warning-note{background:#fff7e8;border:1px solid #f1d29b;border-radius:15px;padding:12px;margin-top:14px;font-size:13px;color:#735019}.edu-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:15px}.empty-edu{background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px;color:var(--muted)}
+@media(max-width:980px){.auth-panel{padding:26px}.demo-box,.register-grid,.edu-hero,.education-grid-pro,.edu-kpis{grid-template-columns:1fr}.edu-tools{align-items:stretch;flex-direction:column}.edu-tools input{min-width:0;width:100%}}
 
-  header.brand{display:flex;align-items:center;justify-content:space-between;padding:22px 0 14px;border-bottom:1px solid var(--border);}
-  .brand-left{display:flex;align-items:center;gap:12px;}
-  .logo{width:40px;height:40px;border-radius:10px;background:linear-gradient(160deg,var(--blue-500),var(--blue-700));display:flex;align-items:center;justify-content:center;color:#fff;font-family:var(--serif);font-weight:700;font-size:19px;}
-  .brand-left div h1{font-size:20px;margin:0;}
-  .brand-left div p{margin:0;font-size:12.5px;color:var(--muted);}
-  .patient-pill{font-size:12.5px;background:var(--blue-50);border:1px solid var(--blue-100);color:var(--blue-700);padding:6px 12px;border-radius:20px;}
 
-  nav.tabs{display:flex;gap:4px;flex-wrap:wrap;margin:18px 0 28px;border-bottom:1px solid var(--border);}
-  nav.tabs button{background:none;border:none;padding:11px 16px;font-size:14px;font-weight:600;color:var(--muted);border-bottom:2px solid transparent;transition:.15s;}
-  nav.tabs button:hover{color:var(--blue-700);}
-  nav.tabs button.active{color:var(--blue-700);border-bottom-color:var(--blue-600);}
-
-  .view{display:none;animation:fade .25s ease;}
-  .view.active{display:block;}
-  @keyframes fade{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:translateY(0);}}
-
-  .hero{background:linear-gradient(135deg,var(--blue-700),var(--blue-500));border-radius:16px;padding:40px 36px;color:#fff;margin-bottom:26px;position:relative;overflow:hidden;}
-  .hero:before{content:"";position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:50%;background:rgba(255,255,255,.08);}
-  .hero h2{color:#fff;font-size:28px;max-width:520px;}
-  .hero p{max-width:480px;color:#E4F1FB;font-size:15px;}
-  .hero .cta-row{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap;}
-
-  .btn{border-radius:8px;padding:11px 18px;font-size:14px;font-weight:600;border:1px solid transparent;}
-  .btn-primary{background:var(--blue-600);color:#fff;}
-  .btn-primary:hover{background:var(--blue-700);}
-  .btn-ghost{background:rgba(255,255,255,.12);color:#fff;border-color:rgba(255,255,255,.5);}
-  .btn-ghost:hover{background:rgba(255,255,255,.22);}
-  .btn-outline{background:#fff;color:var(--blue-700);border-color:var(--blue-100);}
-  .btn-outline:hover{background:var(--blue-50);}
-  .btn-danger{background:var(--red);color:#fff;}
-
-  .grid{display:grid;gap:16px;}
-  .grid-3{grid-template-columns:repeat(3,1fr);}
-  .grid-2{grid-template-columns:repeat(2,1fr);}
-  @media(max-width:820px){.grid-3,.grid-2{grid-template-columns:1fr;}}
-
-  .card{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:20px;}
-  .card h3{font-size:16px;}
-  .card .icon{width:38px;height:38px;border-radius:9px;background:var(--blue-50);display:flex;align-items:center;justify-content:center;margin-bottom:10px;font-size:18px;}
-  .card p{color:var(--muted);font-size:13.5px;margin:0 0 12px;}
-  .card .link-btn{font-size:13px;font-weight:600;color:var(--blue-600);text-decoration:none;}
-
-  section.block{margin-bottom:30px;}
-  section.block > p.lede{color:var(--muted);font-size:14.5px;max-width:640px;margin-top:-6px;}
-
-  label{display:block;font-size:13px;font-weight:600;color:var(--navy);margin:14px 0 6px;}
-  input[type=text],input[type=email],input[type=date],select,textarea{
-    width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:8px;font-family:var(--sans);font-size:14px;background:#fff;color:var(--text);
-  }
-  textarea{resize:vertical;min-height:90px;}
-  .checkbox-row{display:flex;align-items:center;gap:8px;margin-top:12px;font-size:13.5px;color:var(--muted);}
-  .checkbox-row input{width:16px;height:16px;}
-
-  .q-option{display:flex;align-items:center;gap:10px;padding:10px 12px;border:1px solid var(--border);border-radius:8px;margin-bottom:8px;cursor:pointer;font-size:14px;transition:.15s;}
-  .q-option:hover{border-color:var(--blue-500);background:var(--blue-50);}
-  .q-option.selected{border-color:var(--blue-600);background:var(--blue-50);}
-  .q-option input{width:16px;height:16px;}
-  .progress-bar{height:6px;background:var(--border);border-radius:4px;overflow:hidden;margin-bottom:20px;}
-  .progress-fill{height:100%;background:var(--blue-500);transition:.25s;}
-
-  .badge{display:inline-block;font-size:11.5px;font-weight:700;padding:3px 9px;border-radius:20px;letter-spacing:.3px;text-transform:uppercase;}
-  .badge-low{background:#E4F4EC;color:var(--green);}
-  .badge-medium{background:#FBF0DA;color:var(--amber);}
-  .badge-urgent{background:#FBE4E2;color:var(--red);}
-
-  table{width:100%;border-collapse:collapse;font-size:13.5px;}
-  th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--border);}
-  th{color:var(--muted);font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.3px;}
-  tr:hover td{background:var(--blue-50);}
-
-  .result-box{border-radius:12px;padding:22px;margin-top:16px;}
-  .result-low{background:#EFF9F4;border:1px solid #C9EAD9;}
-  .result-medium{background:#FDF6E7;border:1px solid #F0DDA8;}
-  .result-urgent{background:#FDECEA;border:1px solid #F3C1BC;}
-
-  .emergency-banner{background:var(--red);color:#fff;border-radius:14px;padding:24px;text-align:center;margin-bottom:24px;}
-  .emergency-banner h2{color:#fff;}
-  .hotline-list{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:18px;}
-  @media(max-width:700px){.hotline-list{grid-template-columns:1fr;}}
-  .hotline-card{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.3);border-radius:10px;padding:14px;text-align:left;}
-  .hotline-card b{display:block;font-size:15px;}
-
-  .article{border:1px solid var(--border);border-radius:var(--radius);padding:18px;background:#fff;}
-  .article .tag{font-size:11px;font-weight:700;color:var(--blue-600);text-transform:uppercase;letter-spacing:.4px;}
-  .warn-box{background:var(--blue-50);border-left:3px solid var(--blue-500);padding:10px 14px;border-radius:6px;font-size:13px;margin-top:10px;color:var(--blue-700);}
-
-  .modal-overlay{position:fixed;inset:0;background:rgba(15,30,45,.55);display:none;align-items:center;justify-content:center;z-index:50;padding:20px;}
-  .modal-overlay.active{display:flex;}
-  .modal{background:#fff;border-radius:14px;max-width:440px;width:100%;padding:28px;text-align:center;}
-  .modal .icon-circle{width:56px;height:56px;border-radius:50%;background:var(--blue-50);display:flex;align-items:center;justify-content:center;font-size:26px;margin:0 auto 14px;}
-
-  .footer-note{margin-top:50px;padding-top:20px;border-top:1px solid var(--border);font-size:12px;color:var(--muted);text-align:center;}
-
-  .dash-toolbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:10px;}
-  .stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px;}
-  @media(max-width:820px){.stat-row{grid-template-columns:repeat(2,1fr);}}
-  .stat-card{background:#fff;border:1px solid var(--border);border-radius:10px;padding:16px;}
-  .stat-card .num{font-family:var(--serif);font-size:26px;color:var(--navy);}
-  .stat-card .lbl{font-size:12px;color:var(--muted);}
-  .reply-row{display:none;margin-top:10px;gap:8px;}
-  .reply-row.active{display:flex;}
-  .reply-row input{flex:1;}
-  .empty{color:var(--muted);font-size:13.5px;padding:20px 0;text-align:center;}
+.profile-menu{position:relative}.profile-trigger{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:7px 10px 7px 7px;box-shadow:0 10px 28px rgba(16,34,53,.07)}.avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(145deg,var(--primary),var(--primary2));color:#fff;display:grid;place-items:center;font-weight:900}.profile-name{font-weight:900;color:var(--ink);max-width:170px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.profile-caret{color:var(--muted);font-size:12px}.dropdown-panel{position:absolute;right:0;top:52px;width:285px;background:#fff;border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow);padding:10px;display:none;z-index:60}.dropdown-panel.active{display:block}.dropdown-head{padding:12px;border-radius:15px;background:#f7fbfe;margin-bottom:8px}.dropdown-head b{display:block;color:var(--ink)}.dropdown-head span{font-size:12px;color:var(--muted)}.dropdown-item{width:100%;border:none;background:transparent;text-align:left;border-radius:14px;padding:11px 12px;font-weight:900;color:var(--text);display:flex;align-items:center;gap:10px}.dropdown-item:hover{background:var(--soft);color:var(--primary2)}.dropdown-sep{height:1px;background:var(--line);margin:8px 4px}.dropdown-danger{color:var(--red)}.inbox-list{display:grid;gap:10px}.inbox-item{background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px}.settings-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:640px){.profile-name{display:none}.dropdown-panel{right:-8px;width:260px}.settings-row{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-
-<div class="topbar">
-  <span>MindCare General Hospital &mdash; Department of Psychology</span>
-  <a class="crisis-link" href="#" onclick="showTab('emergency');return false;">🚨 In crisis? Get help now</a>
-</div>
-
-<div class="app">
-
-  <header class="brand">
-    <div class="brand-left">
-      <div class="logo">PSY</div>
-      <div>
-        <h1>Hospital Sungai Buloh (PSIKOLOGI) </h1>
-        <p>Screening &middot; Q&amp;A &middot; Appointments &middot; Patient education</p>
+<div id="auth" class="login-shell">
+  <div class="login-card">
+    <div class="login-art">
+      <div class="logo-mark">PSY</div>
+      <h1>Portal Psikologi Hospital Sungai Buloh</h1>
+      <p>Sistem portal yang lebih profesional untuk pesakit dan kakitangan hospital. Pesakit boleh daftar akaun, buat saringan, bertanya soalan dan tempah janji temu. Staff pula boleh mengurus operasi klinikal melalui dashboard lengkap.</p>
+      <div class="feature-list">
+        <div class="feature">🧑‍⚕️<div><b>Staff Portal lengkap</b><span>Janji temu, pesakit, soalan, saringan, kes urgent, laporan dan jadual doktor.</span></div></div>
+        <div class="feature">👤<div><b>Portal Pesakit</b><span>Daftar akaun, log masuk, tempah sesi dan semak status dalam satu tempat.</span></div></div>
+        <div class="feature">📚<div><b>Pendidikan Kesihatan Mental</b><span>Panduan profesional dan langkah praktikal untuk mengurus masalah harian.</span></div></div>
       </div>
-    </div>
-    <div class="patient-pill" id="patientPill">Signed in as Guest Patient</div>
-  </header>
-
-  <nav class="tabs" id="tabs">
-    <button data-tab="home" class="active">Home</button>
-    <button data-tab="screening">Screening</button>
-    <button data-tab="qa">Ask a Question</button>
-    <button data-tab="appointments">Appointments</button>
-    <button data-tab="education">Education Center</button>
-    <button data-tab="dashboard">Staff Dashboard</button>
-    <button data-tab="emergency">Emergency</button>
-  </nav>
-
-  <!-- HOME -->
-  <div class="view active" id="view-home">
-    <div class="hero">
-      <h2>Understand how you're doing, before your first session.</h2>
-      <p>Take a short screening, ask our clinical team a question, or book a session with one of our hospital psychologists &mdash; all in one confidential place.</p>
-      <div class="cta-row">
-        <button class="btn btn-ghost" onclick="showTab('screening')">Start a screening</button>
-        <button class="btn btn-primary" onclick="showTab('appointments')" style="background:#fff;color:var(--blue-700);">Book an appointment</button>
+      <div class="login-stats">
+        <div class="login-stat"><b>24/7</b><span>Akses portal</span></div>
+        <div class="login-stat"><b>7</b><span>Tab staff aktif</span></div>
+        <div class="login-stat"><b>100%</b><span>Demo browser</span></div>
       </div>
     </div>
 
-    <div class="grid grid-3">
-      <div class="card">
-        <div class="icon">🧭</div>
-        <h3>Mental health screening</h3>
-        <p>Structured, hospital-approved questionnaires for depression, anxiety, and stress. Get a risk level and a clear next step.</p>
-        <a class="link-btn" href="#" onclick="showTab('screening');return false;">Take a screening →</a>
-      </div>
-      <div class="card">
-        <div class="icon">💬</div>
-        <h3>Ask our clinical team</h3>
-        <p>Submit a private question. It's triaged and routed to a psychologist or admin &mdash; anonymously if you prefer.</p>
-        <a class="link-btn" href="#" onclick="showTab('qa');return false;">Ask a question →</a>
-      </div>
-      <div class="card">
-        <div class="icon">📅</div>
-        <h3>Book a session</h3>
-        <p>Choose a department, pick an available psychologist, and select a date and time that works for you.</p>
-        <a class="link-btn" href="#" onclick="showTab('appointments');return false;">Book now →</a>
-      </div>
-    </div>
-
-    <section class="block" style="margin-top:30px;">
-      <h3 style="font-size:18px;">How the portal works</h3>
-      <div class="grid grid-3">
-        <div class="card"><b>1. Screen</b><p style="margin-top:8px;">Complete a short, validated questionnaire about how you've been feeling.</p></div>
-        <div class="card"><b>2. Review</b><p style="margin-top:8px;">Your result is scored automatically and, if needed, flagged for our clinical team.</p></div>
-        <div class="card"><b>3. Connect</b><p style="margin-top:8px;">Get self-help resources, book a session, or &mdash; if urgent &mdash; get routed to immediate support.</p></div>
-      </div>
-    </section>
-  </div>
-
-  <!-- SCREENING -->
-  <div class="view" id="view-screening">
-    <section class="block">
-      <h2>Mental health screening</h2>
-      <p class="lede">These questionnaires are based on widely used clinical screening formats (similar in structure to the PHQ-9 and GAD-7). They support &mdash; but don't replace &mdash; a full clinical assessment.</p>
-    </section>
-
-    <div id="screeningPicker" class="grid grid-2">
-      <div class="card">
-        <div class="icon">🌧️</div>
-        <h3>Depression screening</h3>
-        <p>9 questions about mood, energy, sleep, and outlook over the past two weeks.</p>
-        <button class="btn btn-outline" onclick="startScreening('depression')">Start (2 min)</button>
-      </div>
-      <div class="card">
-        <div class="icon">🌀</div>
-        <h3>Anxiety screening</h3>
-        <p>7 questions about worry, restlessness, and tension over the past two weeks.</p>
-        <button class="btn btn-outline" onclick="startScreening('anxiety')">Start (2 min)</button>
-      </div>
-    </div>
-
-    <div id="screeningRunner" style="display:none;max-width:640px;">
-      <div class="progress-bar"><div class="progress-fill" id="screeningProgress" style="width:0%;"></div></div>
-      <div class="card">
-        <span class="badge badge-low" id="screeningTypeLabel" style="margin-bottom:10px;"></span>
-        <h3 id="screeningQuestionNum" style="margin-top:10px;"></h3>
-        <p id="screeningQuestionText" style="font-size:15px;color:var(--text);"></p>
-        <div id="screeningOptions"></div>
-        <div style="display:flex;justify-content:space-between;margin-top:16px;">
-          <button class="btn btn-outline" id="screeningBackBtn" onclick="screeningBack()">Back</button>
-          <button class="btn btn-primary" id="screeningNextBtn" onclick="screeningNext()" disabled>Next</button>
-        </div>
-      </div>
-    </div>
-
-    <div id="screeningResult" style="display:none;max-width:640px;"></div>
-  </div>
-
-  <!-- Q&A -->
-  <div class="view" id="view-qa">
-    <section class="block">
-      <h2>Ask a question</h2>
-      <p class="lede">This is a private triage system, not an open forum &mdash; only you and our clinical team see your question. It's reviewed and answered by a psychologist or admin, not posted publicly.</p>
-    </section>
-    <div class="grid grid-2">
-      <div class="card">
-        <h3>Submit your question</h3>
-        <label for="qaCategory">What's this mainly about?</label>
-        <select id="qaCategory">
-          <option>Stress</option>
-          <option>Anxiety</option>
-          <option>Depression / low mood</option>
-          <option>Sleep</option>
-          <option>Relationships / family</option>
-          <option>Other</option>
-        </select>
-        <label for="qaText">Describe what you're experiencing</label>
-        <textarea id="qaText" placeholder="e.g. I can't sleep and feel anxious most nights..."></textarea>
-        <div class="checkbox-row">
-          <input type="checkbox" id="qaAnon">
-          <label for="qaAnon" style="margin:0;font-weight:400;">Submit anonymously</label>
-        </div>
-        <div style="margin-top:16px;">
-          <button class="btn btn-primary" onclick="submitQA()">Submit question</button>
-        </div>
-        <p style="font-size:12px;color:var(--muted);margin-top:10px;">If what you're going through feels urgent or unsafe, please use the <a href="#" onclick="showTab('emergency');return false;">Emergency section</a> instead of waiting for a reply.</p>
-      </div>
-      <div class="card">
-        <h3>Your submitted questions</h3>
-        <div id="qaMyList"><p class="empty">You haven't submitted any questions yet.</p></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- APPOINTMENTS -->
-  <div class="view" id="view-appointments">
-    <section class="block">
-      <h2>Book an appointment</h2>
-      <p class="lede">Choose a department and psychologist, then pick a date and time. You'll get a confirmation once it's booked.</p>
-    </section>
-    <div class="grid grid-2">
-      <div class="card">
-        <h3>New appointment</h3>
-        <label for="apptDept">Department</label>
-        <select id="apptDept" onchange="renderDoctorOptions()">
-          <option value="general">General Psychology</option>
-          <option value="clinical">Clinical Psychology</option>
-          <option value="child">Child &amp; Adolescent Psychology</option>
-          <option value="counseling">Counseling &amp; Wellness</option>
-        </select>
-        <label for="apptDoctor">Psychologist</label>
-        <select id="apptDoctor"></select>
-        <label for="apptDate">Date</label>
-        <input type="date" id="apptDate">
-        <label for="apptTime">Available time slots</label>
-        <div class="grid grid-3" id="apptSlots" style="margin-top:2px;"></div>
-        <label for="apptName">Full name</label>
-        <input type="text" id="apptName" placeholder="Your name">
-        <label for="apptEmail">Email</label>
-        <input type="email" id="apptEmail" placeholder="you@example.com">
-        <div style="margin-top:16px;">
-          <button class="btn btn-primary" onclick="bookAppointment()">Confirm booking</button>
-        </div>
-      </div>
-      <div class="card">
-        <h3>Your upcoming appointments</h3>
-        <div id="apptList"><p class="empty">No appointments booked yet.</p></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- EDUCATION -->
-  <div class="view" id="view-education">
-    <section class="block">
-      <h2>Patient education center</h2>
-      <p class="lede">Hospital-reviewed guides to help you understand common conditions, recognize warning signs, and know when to see a doctor.</p>
-    </section>
-    <div class="grid grid-2" id="educationGrid"></div>
-  </div>
-
-  <!-- DASHBOARD -->
-  <div class="view" id="view-dashboard">
-    <section class="block">
-      <h2>Staff dashboard</h2>
-      <p class="lede">Demo view for hospital staff: psychologists and admins can review screening results, respond to patient questions, and see appointment load. (Prototype &mdash; not access-controlled.)</p>
-    </section>
-
-    <div class="stat-row">
-      <div class="stat-card"><div class="num" id="statQA">0</div><div class="lbl">Open questions</div></div>
-      <div class="stat-card"><div class="num" id="statUrgent">0</div><div class="lbl">Urgent flags</div></div>
-      <div class="stat-card"><div class="num" id="statScreenings">0</div><div class="lbl">Screenings completed</div></div>
-      <div class="stat-card"><div class="num" id="statAppts">0</div><div class="lbl">Appointments booked</div></div>
-    </div>
-
-    <div class="card" style="margin-bottom:18px;">
-      <div class="dash-toolbar">
-        <h3 style="margin:0;">Patient questions</h3>
-      </div>
-      <table id="dashQATable">
-        <thead><tr><th>Patient</th><th>Category</th><th>Priority</th><th>Question</th><th>Status</th><th></th></tr></thead>
-        <tbody id="dashQABody"></tbody>
-      </table>
-    </div>
-
-    <div class="card">
-      <h3 style="margin-top:0;">Screening submissions</h3>
-      <table id="dashScreeningTable">
-        <thead><tr><th>Type</th><th>Score</th><th>Risk level</th><th>Recommended action</th></tr></thead>
-        <tbody id="dashScreeningBody"></tbody>
-      </table>
-    </div>
-  </div>
-
-  <!-- EMERGENCY -->
-  <div class="view" id="view-emergency">
-    <div class="emergency-banner">
-      <h2>If you are in immediate danger or thinking about harming yourself</h2>
-      <p>Please contact one of the lines below right now, or go to your nearest emergency department. You don't have to wait for an appointment.</p>
-      <div class="hotline-list">
-        <div class="hotline-card"><b>Hospital Psychiatric Emergency Line</b>+60 3-XXXX XXXX (24 hours)</div>
-        <div class="hotline-card"><b>Befrienders KL (Malaysia)</b>03-7627 2929 &middot; 24 hours</div>
-        <div class="hotline-card"><b>Talian Kasih</b>15999 &middot; WhatsApp 019-261 5999</div>
-        <div class="hotline-card"><b>Emergency services</b>999</div>
-      </div>
-    </div>
-    <div class="card">
-      <h3>What happens if you flag urgent here</h3>
-      <p style="color:var(--muted);font-size:14px;">Selecting "urgent" in a screening or Q&amp;A submission automatically flags your case for our admin panel and surfaces it at the top of the staff dashboard, so a clinician can follow up as a priority. It does not replace calling the numbers above in a genuine emergency.</p>
-      <label for="emergNote">If you'd like, tell us what's happening (optional)</label>
-      <textarea id="emergNote" placeholder="This stays private and goes straight to the on-call clinician."></textarea>
-      <div style="margin-top:14px;">
-        <button class="btn btn-danger" onclick="submitEmergency()">Notify the clinical team now</button>
-      </div>
-    </div>
-  </div>
-
-  <div class="footer-note">
-    MindCare Hospital Portal &mdash; prototype build. All patient data on this screen exists only in your current browser session and is not saved or transmitted anywhere. For a real deployment, this must run on a secure, encrypted, access-controlled backend reviewed by hospital IT and clinical governance.
-  </div>
-</div>
-
-<!-- Confirmation modal -->
-<div class="modal-overlay" id="modalOverlay">
-  <div class="modal">
-    <div class="icon-circle" id="modalIcon">✅</div>
-    <h3 id="modalTitle">Done</h3>
-    <p id="modalBody" style="color:var(--muted);font-size:14px;"></p>
-    <button class="btn btn-primary" onclick="closeModal()">Close</button>
-  </div>
-</div>
-
-<script>
-// ---------- In-memory state (session only, no persistence) ----------
-const state = {
-  qa: [],
-  appointments: [],
-  screenings: [],
-  qaIdCounter: 1,
-  apptIdCounter: 1
-};
-
-const URGENT_KEYWORDS = ['harm myself','hurt myself','suicide','kill myself','end my life','self harm','self-harm','don\'t want to live','no reason to live'];
-
-// ---------- Tabs ----------
-function showTab(name){
-  document.querySelectorAll('nav.tabs button').forEach(b=>b.classList.toggle('active', b.dataset.tab===name));
-  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
-  document.getElementById('view-'+name).classList.add('active');
-  window.scrollTo({top:0,behavior:'smooth'});
-}
-document.querySelectorAll('nav.tabs button').forEach(b=>{
-  b.addEventListener('click', ()=>showTab(b.dataset.tab));
-});
-
-// ---------- Modal ----------
-function openModal(icon,title,body){
-  document.getElementById('modalIcon').textContent = icon;
-  document.getElementById('modalTitle').textContent = title;
-  document.getElementById('modalBody').textContent = body;
-  document.getElementById('modalOverlay').classList.add('active');
-}
-function closeModal(){ document.getElementById('modalOverlay').classList.remove('active'); }
-
-// ---------- Screening ----------
-const QUESTIONS = {
-  depression: {
-    label: 'Depression screening',
-    intro: 'Over the last 2 weeks, how often have you been bothered by the following?',
-    items: [
-      "Little interest or pleasure in doing things",
-      "Feeling down, depressed, or hopeless",
-      "Trouble falling or staying asleep, or sleeping too much",
-      "Feeling tired or having little energy",
-      "Poor appetite or overeating",
-      "Feeling bad about yourself, or that you're a failure",
-      "Trouble concentrating on things",
-      "Moving or speaking noticeably slowly, or feeling restless",
-      "Thoughts that you would be better off dead, or of hurting yourself"
-    ]
-  },
-  anxiety: {
-    label: 'Anxiety screening',
-    intro: 'Over the last 2 weeks, how often have you been bothered by the following?',
-    items: [
-      "Feeling nervous, anxious, or on edge",
-      "Not being able to stop or control worrying",
-      "Worrying too much about different things",
-      "Trouble relaxing",
-      "Being so restless it's hard to sit still",
-      "Becoming easily annoyed or irritable",
-      "Feeling afraid as if something awful might happen"
-    ]
-  }
-};
-const OPTS = [
-  {label:"Not at all", value:0},
-  {label:"Several days", value:1},
-  {label:"More than half the days", value:2},
-  {label:"Nearly every day", value:3}
-];
-
-let currentScreening = null; // {type, idx, answers: []}
-
-function startScreening(type){
-  currentScreening = {type, idx:0, answers: new Array(QUESTIONS[type].items.length).fill(null)};
-  document.getElementById('screeningPicker').style.display='none';
-  document.getElementById('screeningResult').style.display='none';
-  document.getElementById('screeningRunner').style.display='block';
-  renderScreeningQuestion();
-}
-function renderScreeningQuestion(){
-  const {type, idx, answers} = currentScreening;
-  const q = QUESTIONS[type];
-  document.getElementById('screeningTypeLabel').textContent = q.label;
-  document.getElementById('screeningTypeLabel').className = 'badge badge-low';
-  document.getElementById('screeningQuestionNum').textContent = `Question ${idx+1} of ${q.items.length}`;
-  document.getElementById('screeningQuestionText').textContent = idx===0 ? (q.intro + " " + q.items[idx]) : q.items[idx];
-  document.getElementById('screeningProgress').style.width = `${((idx)/q.items.length)*100}%`;
-
-  const optWrap = document.getElementById('screeningOptions');
-  optWrap.innerHTML = '';
-  OPTS.forEach(opt=>{
-    const div = document.createElement('div');
-    div.className = 'q-option' + (answers[idx]===opt.value ? ' selected' : '');
-    div.innerHTML = `<input type="radio" name="sopt" ${answers[idx]===opt.value?'checked':''}/> <span>${opt.label}</span>`;
-    div.onclick = ()=>{
-      answers[idx] = opt.value;
-      renderScreeningQuestion();
-    };
-    optWrap.appendChild(div);
-  });
-
-  document.getElementById('screeningBackBtn').disabled = idx===0;
-  document.getElementById('screeningBackBtn').style.opacity = idx===0 ? .5 : 1;
-  document.getElementById('screeningNextBtn').disabled = answers[idx]===null;
-  document.getElementById('screeningNextBtn').textContent = idx===q.items.length-1 ? 'See result' : 'Next';
-}
-function screeningBack(){
-  if(currentScreening.idx>0){ currentScreening.idx--; renderScreeningQuestion(); }
-}
-function screeningNext(){
-  const {type, idx, answers} = currentScreening;
-  const q = QUESTIONS[type];
-  if(idx < q.items.length-1){
-    currentScreening.idx++;
-    renderScreeningQuestion();
-  } else {
-    finishScreening();
-  }
-}
-function finishScreening(){
-  const {type, answers} = currentScreening;
-  const q = QUESTIONS[type];
-  const score = answers.reduce((a,b)=>a+b,0);
-  const selfHarmFlag = type==='depression' && answers[8] > 0; // last item = self-harm ideation item
-
- let risk, action, resultClass;
-  if(selfHarmFlag){
-    risk = 'Urgent'; resultClass='result-urgent';
-    action = 'Your answers include a response about thoughts of self-harm. Please contact our emergency line or a crisis hotline now, and our clinical team has been flagged to follow up urgently.';
-  } else if(score >= 15){
-    risk='Urgent'; resultClass='result-urgent';
-    action = 'Your score indicates a high likelihood of significant symptoms. We recommend an urgent referral to a hospital psychologist rather than waiting for a routine slot.';
-  } else if(score >= 8){
-    risk='Medium'; resultClass='result-medium';
-    action = 'Your score suggests moderate symptoms. We recommend scheduling a consultation with one of our psychologists in the next 1-2 weeks.';
-  } else {
-    risk='Low'; resultClass='result-low';
-    action = 'Your score suggests mild or minimal symptoms right now. Self-help resources in our Education Center may be useful, and you\'re welcome to book a check-in any time.';
-  }
-
-  state.screenings.push({type:q.label, score, risk, action});
-  renderDashboard();
-
-  document.getElementById('screeningRunner').style.display='none';
-  const resultBox = document.getElementById('screeningResult');
-  resultBox.style.display='block';
-  const badgeClass = risk==='Low'?'badge-low':risk==='Medium'?'badge-medium':'badge-urgent';
-  resultBox.innerHTML = `
-    <div class="result-box ${resultClass}">
-      <span class="badge ${badgeClass}">${risk} risk</span>
-      <h3 style="margin-top:10px;">${q.label} result</h3>
-      <p style="margin:0 0 10px;font-size:14px;">Score: <b>${score}</b> / ${q.items.length*3}</p>
-      <p style="font-size:14.5px;">${action}</p>
-      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;">
-        ${risk==='Urgent' ? '<button class="btn btn-danger" onclick="showTab(\'emergency\')">Go to emergency support</button>' : ''}
-        <button class="btn btn-primary" onclick="showTab('appointments')">Book an appointment</button>
-        <button class="btn btn-outline" onclick="resetScreening()">Take another screening</button>
-      </div>
-    </div>`;
-}
-function resetScreening(){
-  document.getElementById('screeningPicker').style.display='grid';
-  document.getElementById('screeningResult').style.display='none';
-  currentScreening = null;
-}
-
-// ---------- Q&A ----------
-function detectPriority(text){
-  const lower = text.toLowerCase();
-  if(URGENT_KEYWORDS.some(k=>lower.includes(k))) return 'Urgent';
-  if(/panic attack|can't cope|cannot cope|breaking down|desperate/.test(lower)) return 'Urgent';
-  if(/anxious|depressed|can't sleep|cannot sleep|overwhelmed|stressed/.test(lower)) return 'Medium';
-  return 'Low';
-}
-function submitQA(){
-  const category = document.getElementById('qaCategory').value;
-  const text = document.getElementById('qaText').value.trim();
-  const anon = document.getElementById('qaAnon').checked;
-  if(!text){ openModal('⚠️','Add a bit more detail','Please describe what you\'re experiencing before submitting.'); return; }
-
-  const priority = detectPriority(text);
-  const entry = {
-    id: state.qaIdCounter++,
-    patient: anon ? 'Anonymous patient' : 'Guest Patient',
-    category, text, priority, status:'Pending', reply:null
-  };
-  state.qa.push(entry);
-  document.getElementById('qaText').value='';
-  renderMyQA();
-  renderDashboard();
-
-  if(priority==='Urgent'){
-    openModal('🚨','This has been flagged urgent', 'Your question has been sent to our clinical team as a priority case. If you feel unsafe right now, please use the Emergency section immediately.');
-  } else {
-    openModal('✅','Question submitted', `Your question has been categorized as "${category}" with ${priority.toLowerCase()} priority. A member of our clinical team will respond soon.`);
-  }
-}
-function renderMyQA(){
-  const wrap = document.getElementById('qaMyList');
-  if(state.qa.length===0){ wrap.innerHTML = '<p class="empty">You haven\'t submitted any questions yet.</p>'; return; }
-  wrap.innerHTML = state.qa.map(q=>{
-    const badgeClass = q.priority==='Low'?'badge-low':q.priority==='Medium'?'badge-medium':'badge-urgent';
-    return `<div class="card" style="padding:14px;margin-bottom:10px;">
-      <div style="display:flex;justify-content:space-between;align-items:center;">
-        <span class="badge ${badgeClass}">${q.priority}</span>
-        <span style="font-size:12px;color:var(--muted);">${q.status}</span>
-      </div>
-      <p style="margin:8px 0 4px;font-size:13.5px;">${escapeHtml(q.text)}</p>
-      ${q.reply ? `<div class="warn-box">Clinician reply: ${escapeHtml(q.reply)}</div>` : ''}
-    </div>`;
-  }).join('');
-}
-
-// ---------- Appointments ----------
-const DOCTORS = {
-  general: ["Dr. Aisha Rahman","Dr. Marcus Tan"],
-  clinical: ["Dr. Priya Nair","Dr. Farhan Idris"],
-  child: ["Dr. Wei Ling Chong","Dr. Daniel Ooi"],
-  counseling: ["Dr. Sarah Lim","Dr. Kumar Devan"]
-};
-function renderDoctorOptions(){
-  const dept = document.getElementById('apptDept').value;
-  const sel = document.getElementById('apptDoctor');
-  sel.innerHTML = DOCTORS[dept].map(d=>`<option>${d}</option>`).join('');
-}
-function renderSlots(){
-  const slots = ["9:00 AM","10:30 AM","1:00 PM","2:30 PM","4:00 PM","5:30 PM"];
-  const wrap = document.getElementById('apptSlots');
-  wrap.innerHTML='';
-  let selected = null;
-  slots.forEach(s=>{
-    const btn = document.createElement('button');
-    btn.type='button'; btn.className='btn btn-outline'; btn.style.fontSize='12.5px'; btn.style.padding='9px';
-    btn.textContent = s;
-    btn.onclick = ()=>{
-      wrap.querySelectorAll('button').forEach(b=>{b.style.background='';b.style.color='var(--blue-700)';});
-      btn.style.background='var(--blue-600)'; btn.style.color='#fff';
-      wrap.dataset.selected = s;
-    };
-    wrap.appendChild(btn);
-  });
-}
-function bookAppointment(){
-  const dept = document.getElementById('apptDept').value;
-  const doctor = document.getElementById('apptDoctor').value;
-  const date = document.getElementById('apptDate').value;
-  const time = document.getElementById('apptSlots').dataset.selected;
-  const name = document.getElementById('apptName').value.trim();
-  const email = document.getElementById('apptEmail').value.trim();
-
-  if(!date || !time || !name || !email){
-    openModal('⚠️','Missing details','Please fill in your name, email, a date, and a time slot before confirming.');
-    return;
-  }
-  state.appointments.push({id: state.apptIdCounter++, dept, doctor, date, time, name, email});
-  renderApptList();
-  renderDashboard();
-  openModal('📅','Appointment confirmed', `Booked with ${doctor} on ${date} at ${time}. A confirmation would normally be emailed to ${email}.`);
-  document.getElementById('apptName').value='';
-  document.getElementById('apptEmail').value='';
-}
-function renderApptList(){
-  const wrap = document.getElementById('apptList');
-  if(state.appointments.length===0){ wrap.innerHTML = '<p class="empty">No appointments booked yet.</p>'; return; }
-  wrap.innerHTML = state.appointments.map(a=>`
-    <div class="card" style="padding:14px;margin-bottom:10px;">
-      <b style="font-size:14px;">${a.doctor}</b>
-      <p style="margin:4px 0 0;font-size:13px;color:var(--muted);">${a.date} at ${a.time} &middot; ${deptLabel(a.dept)}</p>
-    </div>`).join('');
-}
-function deptLabel(v){
-  return {general:'General Psychology',clinical:'Clinical Psychology',child:'Child & Adolescent Psychology',counseling:'Counseling & Wellness'}[v] || v;
-}
-
-// ---------- Education ----------
-const ARTICLES = [
-  {tag:'Depression', title:'Understanding depression', body:'Persistent low mood, loss of interest, and changes in sleep or appetite lasting more than two weeks.', warn:'See a doctor if low mood persists most days for two weeks or more, or affects daily functioning.'},
-  {tag:'Anxiety', title:'Recognizing anxiety symptoms', body:'Excessive worry, restlessness, muscle tension, and difficulty concentrating, often with physical symptoms like a racing heart.', warn:'See a doctor if worry feels uncontrollable or interferes with work, sleep, or relationships.'},
-  {tag:'Sleep', title:'Sleep disorder guide', body:'Trouble falling asleep, staying asleep, or waking unrefreshed, which can both cause and worsen mental health symptoms.', warn:'See a doctor if poor sleep continues for more than a month despite good sleep habits.'},
-  {tag:'Stress', title:'Managing stress', body:'Stress becomes a concern when it is constant, feels unmanageable, or starts to affect your body, mood, or relationships.', warn:'See a doctor if stress causes physical symptoms, panic, or you rely on substances to cope.'}
-];
-function renderEducation(){
-  document.getElementById('educationGrid').innerHTML = ARTICLES.map(a=>`
-    <div class="article">
-      <span class="tag">${a.tag}</span>
-      <h3 style="margin-top:6px;font-size:16px;">${a.title}</h3>
-      <p style="font-size:13.5px;color:var(--muted);">${a.body}</p>
-      <div class="warn-box">${a.warn}</div>
-    </div>`).join('');
-}
-
-// ---------- Emergency ----------
-function submitEmergency(){
-  const note = document.getElementById('emergNote').value.trim();
-  state.qa.push({id: state.qaIdCounter++, patient:'Guest Patient (emergency)', category:'Emergency', text: note || '(No details provided)', priority:'Urgent', status:'Pending', reply:null});
-  renderDashboard();
-  document.getElementById('emergNote').value='';
-  openModal('🚨','Clinical team notified','The on-call clinician has been alerted. Please still call the emergency line above if you are in immediate danger.');
-}
-
-// ---------- Dashboard ----------
-function renderDashboard(){
-  document.getElementById('statQA').textContent = state.qa.filter(q=>q.status==='Pending').length;
-  document.getElementById('statUrgent').textContent = state.qa.filter(q=>q.priority==='Urgent').length;
-  document.getElementById('statScreenings').textContent = state.screenings.length;
-  document.getElementById('statAppts').textContent = state.appointments.length;
-
-  const body = document.getElementById('dashQABody');
-  if(state.qa.length===0){
-    body.innerHTML = `<tr><td colspan="6" class="empty">No patient questions yet.</td></tr>`;
-  } else {
-    body.innerHTML = state.qa.slice().reverse().map(q=>{
-      const badgeClass = q.priority==='Low'?'badge-low':q.priority==='Medium'?'badge-medium':'badge-urgent';
-      return `<tr>
-        <td>${q.patient}</td>
-        <td>${q.category}</td>
-        <td><span class="badge ${badgeClass}">${q.priority}</span></td>
-        <td style="max-width:260px;">${escapeHtml(q.text).slice(0,90)}${q.text.length>90?'…':''}</td>
-        <td>${q.status}</td>
-        <td>
-          <button class="btn btn-outline" style="padding:5px 10px;font-size:12px;" onclick="toggleReply(${q.id})">Reply</button>
-          <div class="reply-row" id="reply-${q.id}">
-            <input type="text" id="replyInput-${q.id}" placeholder="Type a reply...">
-            <button class="btn btn-primary" style="padding:6px 10px;font-size:12px;" onclick="sendReply(${q.id})">Send</button>
+    <div class="login-form">
+      <div class="auth-panel">
+        <div class="auth-head">
+          <div class="auth-icon">🔐</div>
+          <div class="auth-title">
+            <h2>Log Masuk Portal</h2>
+            <p class="muted">Pilih peranan, masukkan maklumat, kemudian tekan Enter atau butang Log Masuk.</p>
           </div>
-        </td>
-      </tr>`;
-    }).join('');
-  }
+        </div>
 
-  const sbody = document.getElementById('dashScreeningBody');
-  if(state.screenings.length===0){
-    sbody.innerHTML = `<tr><td colspan="4" class="empty">No screenings completed yet.</td></tr>`;
-  } else {
-    sbody.innerHTML = state.screenings.slice().reverse().map(s=>{
-      const badgeClass = s.risk==='Low'?'badge-low':s.risk==='Medium'?'badge-medium':'badge-urgent';
-      return `<tr><td>${s.type}</td><td>${s.score}</td><td><span class="badge ${badgeClass}">${s.risk}</span></td><td style="max-width:340px;font-size:13px;color:var(--muted);">${s.action}</td></tr>`;
-    }).join('');
-  }
-}
-function toggleReply(id){
-  document.getElementById('reply-'+id).classList.toggle('active');
-}
-function sendReply(id){
-  const input = document.getElementById('replyInput-'+id);
-  const text = input.value.trim();
-  if(!text) return;
-  const entry = state.qa.find(q=>q.id===id);
-  entry.reply = text;
-  entry.status = 'Answered';
-  input.value='';
-  renderDashboard();
-  renderMyQA();
-}
+        <div class="auth-card">
+          <h3>Akses Akaun</h3>
+          <p class="small">Gunakan akaun pesakit yang didaftarkan atau akses Staff demo.</p>
+          <div class="seg"><button id="rolePatient" class="active" onclick="setAuthRole('patient')">Pesakit / Guest</button><button id="roleStaff" onclick="setAuthRole('staff')">Staff</button></div>
+          <label>Nama pengguna</label>
+          <div class="input-wrap"><span>👤</span><input id="loginUser" placeholder="contoh: patient1 / staff"></div>
+          <label>Kata laluan</label>
+          <div class="input-wrap"><span>🔑</span><input id="loginPass" type="password" placeholder="Staff: staff123"></div>
+          <button class="btn btn-primary full" onclick="login()">Log Masuk</button>
+          <div class="helper-row"><p id="loginHint" class="small">Guest boleh log masuk tanpa akaun, atau daftar akaun pesakit dahulu.</p><button class="link-btn" onclick="loginUser.value='';loginPass.value='';loginUser.focus()">Clear</button></div>
+          <div class="demo-box">
+            <div class="demo-chip"><b>Login Staff</b>Username: staff<br>Password: staff123</div>
+            <div class="demo-chip"><b>Login Pesakit Demo</b>Username: patient1<br>Password: 123</div>
+          </div>
+        </div>
 
-function escapeHtml(str){
-  const div = document.createElement('div');
-  div.textContent = str;
-  return div.innerHTML;
-}
+        <div class="auth-divider"><span>Pesakit Baharu</span></div>
 
-// ---------- Init ----------
-renderDoctorOptions();
-renderSlots();
-renderEducation();
-renderDashboard();
-renderApptList();
-renderMyQA();
-document.getElementById('modalOverlay').addEventListener('click', e=>{ if(e.target.id==='modalOverlay') closeModal(); });
+        <div class="auth-card">
+          <h3>Belum ada akaun pesakit?</h3>
+          <p class="small">Tekan butang di bawah untuk pergi ke halaman pendaftaran pesakit. Login page ini dikekalkan kemas dan ringkas.</p>
+          <button class="btn btn-outline full" onclick="openRegisterPage()">Daftar Akaun Pesakit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="registerAuth" class="login-shell hide">
+  <div class="login-card">
+    <div class="login-art">
+      <div class="logo-mark">PSY</div>
+      <h1>Pendaftaran Akaun Pesakit</h1>
+      <p>Lengkapkan maklumat asas untuk mencipta akaun pesakit. Selepas daftar, sistem akan kembali ke login page dan mengisi username secara automatik.</p>
+      <div class="feature-list">
+        <div class="feature">📝<div><b>Maklumat Pesakit</b><span>Nama, nombor telefon, emel dan username disimpan dalam browser demo.</span></div></div>
+        <div class="feature">🔐<div><b>Akaun Selamat</b><span>Password perlu disahkan sebelum akaun berjaya didaftarkan.</span></div></div>
+        <div class="feature">↩️<div><b>Kembali ke Login</b><span>Selepas daftar, kamu boleh terus log masuk sebagai pesakit.</span></div></div>
+      </div>
+    </div>
+    <div class="login-form">
+      <div class="auth-panel">
+        <div class="auth-head">
+          <div class="auth-icon">👤</div>
+          <div class="auth-title">
+            <h2>Daftar Akaun Pesakit</h2>
+            <p class="muted">Isi maklumat di bawah. Tekan Enter pada ruangan password untuk daftar.</p>
+          </div>
+        </div>
+        <div class="auth-card">
+          <div class="register-grid">
+            <div><label>Nama penuh</label><div class="input-wrap"><span>🪪</span><input id="regName" placeholder="Nama seperti IC"></div></div>
+            <div><label>No. kad pengenalan</label><div class="input-wrap"><span>#</span><input id="regIC" placeholder="Contoh: 010101-10-1234"></div></div>
+          </div>
+          <div class="register-grid">
+            <div><label>Nombor telefon</label><div class="input-wrap"><span>📱</span><input id="regPhone" placeholder="Contoh: 0123456789"></div></div>
+            <div><label>Emel</label><div class="input-wrap"><span>✉️</span><input id="regEmail" type="email" placeholder="nama@email.com"></div></div>
+          </div>
+          <div class="register-grid">
+            <div><label>Username</label><div class="input-wrap"><span>@</span><input id="regUser" placeholder="contoh: danny123"></div></div>
+            <div><label>Password</label><div class="input-wrap"><span>🔒</span><input id="regPass" type="password" placeholder="cipta password"></div></div>
+          </div>
+          <label>Sahkan password</label>
+          <div class="input-wrap"><span>✅</span><input id="regConfirmPass" type="password" placeholder="masukkan semula password"></div>
+          <div class="register-note">Data demo ini disimpan dalam browser menggunakan localStorage. Untuk sistem sebenar hospital, ia perlu menggunakan backend yang selamat.</div>
+          <button class="btn btn-primary full" onclick="registerPatient()">Daftar Akaun</button>
+          <button class="btn btn-outline full" onclick="backToLogin()">Kembali ke Login</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="portal" class="hide"><div class="topbar"><div class="brand"><div class="mark">PSY</div><div><b>MindCare Hospital Portal</b><small id="roleSubtitle">Portal Pesakit</small></div></div><div class="profile-menu"><button class="profile-trigger" onclick="toggleProfileMenu(event)"><span class="avatar" id="profileAvatar">G</span><span class="profile-name" id="currentUserPill">Guest</span><span class="profile-caret">▼</span></button><div class="dropdown-panel" id="profileDropdown"><div class="dropdown-head"><b id="dropdownUserName">Guest</b><span id="dropdownUserRole">Portal Pesakit</span></div><button class="dropdown-item" onclick="openHeaderMenuPage('profile')">👤 Akaun Saya</button><button class="dropdown-item" onclick="openHeaderMenuPage('inbox')">📥 Inbox</button><button class="dropdown-item" onclick="openHeaderMenuPage('settings')">⚙️ Tetapan</button><button class="dropdown-item" onclick="openHeaderMenuPage('appointments')">📅 Janji Temu</button><div class="dropdown-sep"></div><button class="dropdown-item dropdown-danger" onclick="logout()">🚪 Log Keluar</button></div></div></div><div class="layout"><aside class="sidebar"><div class="side-title">Navigasi</div><div class="nav" id="patientNav"><button class="active" onclick="showPage('pHome',this)">🏠 Utama</button><button onclick="showPage('pScreening',this)">🧭 Saringan</button><button onclick="showPage('pQA',this)">💬 Soal Jawab</button><button onclick="showPage('pAppointments',this)">📅 Janji Temu</button><button onclick="showPage('pEducation',this)">📚 Pendidikan</button><button onclick="showPage('pInbox',this)">📥 Inbox</button><button onclick="showPage('pEmergency',this)">🚨 Bantuan Segera</button></div><div class="nav hide" id="staffNav"><button class="active" onclick="showPage('sOverview',this)">📊 Overview</button><button onclick="showPage('sAppointments',this)">📅 Janji Temu</button><button onclick="showPage('sPatients',this)">👥 Pesakit</button><button onclick="showPage('sQA',this)">💬 Soalan Pesakit</button><button onclick="showPage('sScreenings',this)">🧭 Saringan</button><button onclick="showPage('sCases',this)">🚩 Kes Keutamaan</button><button onclick="showPage('sSchedule',this)">🗓️ Jadual Doktor</button><button onclick="showPage('sReports',this)">📈 Laporan</button><button onclick="showPage('sSettings',this)">⚙️ Tetapan</button></div></aside><main class="main">
+<div id="pHome" class="page active"><div class="hero"><h2>Penjagaan psikologi yang lebih tersusun dan mudah diakses.</h2><p>Pesakit boleh buat saringan ringkas, hantar soalan, tempah janji temu dan semak status dalam satu portal yang kemas.</p><div class="toolbar" style="margin-top:18px"><button class="btn btn-soft" onclick="openPatientTab('pAppointments')">Tempah Janji Temu</button><button class="btn btn-outline" onclick="openPatientTab('pScreening')">Mula Saringan</button></div></div><br><div class="quick-grid"><button class="card stat click-card" onclick="openPatientTab('pAppointments')"><div><div class="num" id="myApptCount">0</div><div class="muted">Janji temu saya</div></div><div class="ico">📅</div></button><button class="card stat click-card" onclick="openPatientTab('pQA')"><div><div class="num" id="myQACount">0</div><div class="muted">Soalan saya</div></div><div class="ico">💬</div></button><button class="card stat click-card" onclick="openPatientTab('pScreening')"><div><div class="num" id="myScreenCount">0</div><div class="muted">Saringan saya</div></div><div class="ico">🧭</div></button><button class="card stat click-card" onclick="openPatientTab('pEducation')"><div><div class="num">4</div><div class="muted">Bahan bacaan</div></div><div class="ico">📚</div></button></div><br><div class="grid grid-2"><div class="card"><h3>Aktiviti Terkini Saya</h3><div id="myRecentActivity"></div></div><div class="card"><h3>Status Janji Temu Terkini</h3><div id="myLatestAppt"></div></div></div></div>
+<div id="pScreening" class="page"><div class="section-head"><div><h2>Saringan Kesihatan Mental</h2><p class="muted">Jawab soalan ringkas untuk dapatkan panduan awal. Ini bukan diagnosis rasmi dan tidak menggantikan penilaian klinikal.</p></div><button class="btn btn-outline" onclick="resetScreeningView()">Pilih Saringan Lain</button></div><div id="screeningPicker" class="grid grid-3"><div class="card click-card" onclick="startScreening('Stres')"><h3>🌿 Saringan Stres</h3><p class="muted">5 soalan tentang tekanan harian, beban kerja dan keupayaan bertenang.</p><button class="btn btn-primary">Mula Saringan</button></div><div class="card click-card" onclick="startScreening('Kebimbangan')"><h3>🌀 Saringan Kebimbangan</h3><p class="muted">5 soalan tentang rasa risau, gelisah dan sukar fokus.</p><button class="btn btn-primary">Mula Saringan</button></div><div class="card click-card" onclick="startScreening('Emosi')"><h3>☁️ Saringan Emosi</h3><p class="muted">5 soalan tentang mood, motivasi, tidur dan tenaga.</p><button class="btn btn-primary">Mula Saringan</button></div></div><div id="screeningRunner" class="card hide" style="max-width:760px"><div class="toolbar" style="justify-content:space-between"><span class="badge info" id="screeningTitle">Saringan</span><span class="small" id="screeningProgressText">Soalan 1/5</span></div><div style="height:9px;background:#edf5fb;border-radius:999px;overflow:hidden;margin:14px 0 18px"><div id="screeningProgressBar" style="height:100%;width:0%;background:var(--primary);border-radius:999px;transition:.2s"></div></div><h3 id="screeningQuestion">Soalan</h3><p class="muted">Pilih jawapan yang paling hampir dengan keadaan kamu dalam 2 minggu kebelakangan ini.</p><div id="screeningOptions" class="grid" style="gap:10px;margin-top:14px"></div><div class="toolbar" style="justify-content:space-between;margin-top:18px"><button class="btn btn-outline" id="screenBackBtn" onclick="screeningBack()">Kembali</button><button class="btn btn-primary" id="screenNextBtn" onclick="screeningNext()">Seterusnya</button></div></div><div id="screeningResultBox" class="hide" style="max-width:760px"></div><br><div class="card"><h3>Rekod Saringan Saya</h3><table><thead><tr><th>Jenis</th><th>Skor</th><th>Risiko</th><th>Cadangan</th><th>Tarikh</th></tr></thead><tbody id="myScreeningBody"></tbody></table></div></div>
+<div id="pQA" class="page"><div class="section-head"><h2>Soal Jawab Pesakit</h2><p class="muted">Hantar soalan kepada pasukan klinikal.</p></div><div class="grid grid-2"><div class="card"><h3>Hantar Soalan</h3><label>Kategori</label><select id="qaCategory"><option>Stres</option><option>Kebimbangan</option><option>Emosi</option><option>Tidur</option><option>Keluarga</option><option>Lain-lain</option></select><label>Soalan / Penerangan</label><textarea id="qaText" placeholder="Terangkan situasi secara ringkas..."></textarea><label>Keutamaan</label><select id="qaPriority"><option>Low</option><option>Medium</option><option>Urgent</option></select><button class="btn btn-primary full" onclick="submitQA()">Hantar Soalan</button></div><div class="card"><h3>Soalan Saya</h3><div id="qaMyList"></div></div></div></div>
+<div id="pAppointments" class="page"><div class="section-head"><h2>Tempahan Janji Temu</h2><p class="muted">Slot berubah mengikut jadual doktor yang staff tetapkan.</p></div><div class="grid grid-2"><div class="card"><h3>Tempahan Baharu</h3><label>Jabatan</label><select id="apptDept" onchange="renderDoctorOptions();renderSlots()"><option value="general">Psikologi Umum</option><option value="clinical">Psikologi Klinikal</option><option value="child">Kanak-kanak & Remaja</option><option value="counseling">Kaunseling & Kesejahteraan</option></select><label>Doktor</label><select id="apptDoctor" onchange="renderSlots()"></select><label>Tarikh</label><input id="apptDate" type="date" onchange="renderSlots()"><label>Slot tersedia</label><div class="slots" id="apptSlots"></div><label>Nama penuh</label><input id="apptName"><label>Emel</label><input id="apptEmail" type="email"><label>Nota ringkas</label><textarea id="apptNote" placeholder="Contoh: mahu sesi susulan / sesi pertama"></textarea><button class="btn btn-primary full" onclick="bookAppointment()">Hantar Tempahan</button></div><div class="card"><h3>Janji Temu Saya</h3><div id="apptList"></div></div></div></div>
+<div id="pEducation" class="page">
+  <div class="edu-hero">
+    <div>
+      <span class="badge info" style="background:rgba(255,255,255,.16);color:#fff;border:1px solid rgba(255,255,255,.24)">Pusat Pendidikan Pesakit</span>
+      <h2>Panduan Kesihatan Mental</h2>
+      <p>Baca panduan ringkas yang disusun lebih kemas untuk memahami masalah biasa, tanda amaran dan langkah praktikal yang boleh dibuat sebelum atau selepas sesi dengan psikologis.</p>
+    </div>
+    <div class="edu-kpis">
+      <div class="edu-kpi"><b id="eduTotal">0</b><span>Topik tersedia</span></div>
+      <div class="edu-kpi"><b>5+</b><span>Langkah praktikal setiap topik</span></div>
+    </div>
+  </div>
+  <div class="edu-tools">
+    <div>
+      <b style="color:var(--ink)">Cari bahan pendidikan</b>
+      <p class="small" style="margin:2px 0 0">Cari mengikut masalah seperti stres, anxiety, tidur atau hubungan.</p>
+    </div>
+    <input id="eduSearch" oninput="renderEducation()" placeholder="Cari topik atau cara atasi...">
+  </div>
+  <div class="edu-filter" id="eduFilters"></div>
+  <div class="education-grid-pro" id="educationGrid" style="margin-top:16px"></div>
+</div>
+<div id="pProfile" class="page"><div class="section-head"><h2>Profil Saya</h2><p class="muted">Kemas kini maklumat asas akaun.</p></div><div class="profile-box"><div class="card"><h3>Maklumat Akaun</h3><label>Nama</label><input id="profileName"><label>Emel</label><input id="profileEmail"><button class="btn btn-primary full" onclick="saveProfile()">Simpan Profil</button></div><div class="card"><h3>Ringkasan Saya</h3><div id="profileSummary"></div></div></div></div>
+<div id="pInbox" class="page"><div class="section-head"><div><h2>Inbox</h2><p class="muted">Semua notifikasi penting seperti status janji temu, balasan staff dan keputusan saringan akan dipaparkan di sini.</p></div><button class="btn btn-outline" onclick="renderInbox()">Refresh</button></div><div class="card"><h3>Notifikasi Saya</h3><div class="inbox-list" id="patientInboxList"></div></div></div>
+<div id="pSettings" class="page"><div class="section-head"><h2>Tetapan Akaun</h2><p class="muted">Urus tetapan ringkas untuk akaun pesakit.</p></div><div class="settings-row"><div class="card"><h3>Maklumat Paparan</h3><label>Nama paparan</label><input id="settingsName"><label>Emel</label><input id="settingsEmail"><button class="btn btn-primary full" onclick="saveSettingsProfile()">Simpan Tetapan</button></div><div class="card"><h3>Privasi & Notifikasi</h3><div class="notice">Demo ini menggunakan localStorage pada browser. Untuk sistem hospital sebenar, semua data perlu disimpan dalam backend yang selamat.</div><button class="btn btn-outline full" onclick="modal('🔔','Notifikasi','Tetapan notifikasi demo telah dibuka.')">Urus Notifikasi</button><button class="btn btn-outline full" onclick="modal('🔐','Keselamatan','Fungsi tukar password boleh ditambah pada versi seterusnya.')">Tukar Password</button></div></div></div>
+<div id="pEmergency" class="page"><div class="section-head"><h2>Bantuan Segera</h2></div><div class="notice">Jika situasi kamu sangat mendesak atau tidak selamat, dapatkan bantuan segera daripada orang dewasa yang dipercayai, pergi ke jabatan kecemasan terdekat, atau hubungi nombor kecemasan setempat.</div><div class="card"><h3>Maklumkan Pasukan Klinikal</h3><label>Catatan ringkas</label><textarea id="emergNote" placeholder="Tulis catatan ringkas untuk tindakan susulan staff."></textarea><button class="btn btn-danger full" onclick="submitEmergency()">Hantar Tanda Keutamaan</button></div></div>
+<div id="sOverview" class="page"><div class="section-head"><h2>Staff Overview</h2><div class="toolbar"><button class="btn btn-soft" onclick="seedDemoData()">Tambah Data Demo</button><button class="btn btn-outline" onclick="exportCSV()">Export CSV</button></div></div><div class="grid grid-4"><button class="card stat click-card" onclick="openStaffTab('sAppointments')"><div><div class="num" id="stAppt">0</div><div class="muted">Janji temu</div></div><div class="ico">📅</div></button><button class="card stat click-card" onclick="openStaffTab('sAppointments')"><div><div class="num" id="stPending">0</div><div class="muted">Menunggu</div></div><div class="ico">⏳</div></button><button class="card stat click-card" onclick="openStaffTab('sQA')"><div><div class="num" id="stQA">0</div><div class="muted">Soalan terbuka</div></div><div class="ico">💬</div></button><button class="card stat click-card" onclick="openStaffTab('sCases')"><div><div class="num" id="stUrgent">0</div><div class="muted">Kes keutamaan</div></div><div class="ico">🚩</div></button></div><br><div class="grid grid-2"><div class="card"><div class="section-head"><h3>Janji Temu Terkini</h3><button class="link-btn" onclick="openStaffTab('sAppointments')">Lihat semua →</button></div><div id="latestAppointments"></div></div><div class="card"><div class="section-head"><h3>Aktiviti Klinikal</h3><button class="link-btn" onclick="openStaffTab('sReports')">Lihat laporan →</button></div><div id="activityFeed"></div></div></div></div>
+<div id="sAppointments" class="page"><div class="section-head"><h2>Pengurusan Janji Temu</h2><div class="toolbar"><input id="apptSearch" oninput="renderStaffAppointments()" placeholder="Cari nama/emel/doktor"><select id="apptStatusFilter" onchange="renderStaffAppointments()"><option value="all">Semua status</option><option>Menunggu</option><option>Diluluskan</option><option>Ditolak</option><option>Selesai</option></select><button class="btn btn-outline" onclick="renderStaffAppointments()">Refresh</button><button class="btn btn-outline" onclick="printTable('staffApptBody')">Cetak</button></div></div><div class="notice">Semua tempahan yang dihantar oleh patient akan terus masuk di sini. Klik <b>Refresh</b> jika staff sedang buka tab ini semasa patient membuat tempahan.</div><div class="card"><table><thead><tr><th>Pesakit</th><th>Emel</th><th>Jabatan</th><th>Doktor</th><th>Tarikh/Masa</th><th>Status</th><th>Tindakan</th></tr></thead><tbody id="staffApptBody"></tbody></table></div></div>
+<div id="sPatients" class="page"><div class="section-head"><h2>Senarai Pesakit</h2><div class="toolbar"><input id="patientSearch" oninput="renderPatients()" placeholder="Cari pesakit"><button class="btn btn-outline" onclick="exportPatients()">Export Pesakit</button></div></div><div class="card"><table><thead><tr><th>Nama</th><th>Username</th><th>Emel</th><th>Jumlah Janji Temu</th><th>Soalan</th><th>Risiko Terkini</th><th>Tindakan</th></tr></thead><tbody id="patientBody"></tbody></table></div></div>
+<div id="sQA" class="page"><div class="section-head"><h2>Soalan Pesakit</h2><div class="toolbar"><input id="qaStaffSearch" oninput="renderStaffQA()" placeholder="Cari soalan/nama"><select id="qaFilter" onchange="renderStaffQA()"><option value="all">Semua</option><option>Pending</option><option>Dijawab</option><option>Urgent</option></select></div></div><div class="card"><table><thead><tr><th>Pesakit</th><th>Kategori</th><th>Prioriti</th><th>Soalan</th><th>Status</th><th>Balasan</th><th>Tindakan</th></tr></thead><tbody id="staffQABody"></tbody></table></div></div>
+<div id="sScreenings" class="page"><div class="section-head"><h2>Keputusan Saringan</h2><div class="toolbar"><select id="screenRiskFilter" onchange="renderScreenings()"><option value="all">Semua risiko</option><option>Low</option><option>Medium</option><option>Urgent</option></select></div></div><div class="card"><table><thead><tr><th>Pesakit</th><th>Jenis</th><th>Skor</th><th>Risiko</th><th>Cadangan</th><th>Tarikh</th></tr></thead><tbody id="staffScreeningBody"></tbody></table></div></div>
+<div id="sCases" class="page"><div class="section-head"><h2>Kes Keutamaan / Perlu Tindakan</h2><button class="btn btn-soft" onclick="openStaffTab('sQA')">Buka Soalan Pesakit</button></div><div class="notice">Tab ini mengumpulkan rekod yang ditanda keutamaan supaya staff boleh buat susulan dengan cepat.</div><div class="card"><div id="urgentCases"></div></div></div>
+<div id="sSchedule" class="page"><div class="section-head"><h2>Jadual Doktor Mingguan</h2><p class="muted">Staff boleh tetapkan doktor bertugas/cuti, masa mula/tamat dan nota.</p></div><div class="grid grid-2"><div class="card"><h3>Tetapkan Jadual Doktor</h3><label>Doktor</label><select id="schedDoctor" onchange="loadScheduleForm()"></select><label>Hari</label><select id="schedDay" onchange="loadScheduleForm()"><option>Isnin</option><option>Selasa</option><option>Rabu</option><option>Khamis</option><option>Jumaat</option><option>Sabtu</option><option>Ahad</option></select><label>Status</label><select id="schedStatus"><option>Bertugas</option><option>Cuti</option></select><div class="grid grid-2"><div><label>Mula</label><select id="schedStart"></select></div><div><label>Tamat</label><select id="schedEnd"></select></div></div><label>Nota</label><textarea id="schedNote" placeholder="Contoh: Klinik pagi sahaja / Cuti tahunan"></textarea><button class="btn btn-primary full" onclick="saveDoctorSchedule()">Simpan Jadual</button><button class="btn btn-outline full" onclick="resetSchedule()">Reset Jadual Doktor Ini</button></div><div class="card"><h3>Ringkasan Jadual</h3><div class="mini-cal" id="doctorSchedule"></div></div></div></div>
+<div id="sReports" class="page"><div class="section-head"><h2>Laporan Operasi</h2><div class="toolbar"><button class="btn btn-outline" onclick="exportCSV()">Export Semua CSV</button><button class="btn btn-soft" onclick="generateReportText()">Jana Ringkasan</button></div></div><div class="grid grid-3"><div class="card"><h3>Appointment Status</h3><div id="reportAppt"></div></div><div class="card"><h3>Risiko Saringan</h3><div id="reportScreen"></div></div><div class="card"><h3>Produktiviti</h3><div id="reportProductivity"></div></div></div><br><div class="card"><h3>Ringkasan Laporan</h3><textarea id="reportText" style="min-height:170px" readonly></textarea></div></div>
+<div id="sSettings" class="page"><div class="section-head"><h2>Tetapan Sistem</h2></div><div class="grid grid-2"><div class="card"><h3>Maklumat Sistem</h3><label>Nama Hospital</label><input id="settingHospital"><label>Nama Portal</label><input id="settingPortal"><button class="btn btn-primary full" onclick="saveSettings()">Simpan Tetapan</button></div><div class="card"><h3>Penyelenggaraan Data Demo</h3><p class="muted">Gunakan untuk demo sahaja. Data disimpan dalam browser melalui localStorage.</p><button class="btn btn-soft full" onclick="seedDemoData()">Tambah Data Demo</button><button class="btn btn-danger full" onclick="clearDemoData()">Padam Semua Data Demo</button></div></div></div>
+<div class="footer-note">MindCare Hospital Portal v5 — prototaip front-end profesional. Untuk penggunaan sebenar, perlukan backend selamat, database, audit log dan integrasi hospital.</div></main></div></div>
+<div class="modal-overlay" id="modalOverlay"><div class="modal"><div class="big" id="modalIcon">✅</div><h3 id="modalTitle">Siap</h3><p id="modalBody" class="muted"></p><button class="btn btn-primary" onclick="closeModal()">Tutup</button></div></div>
+<script>
+const STORE='mindcare_v5_professional';
+const DAYS=['Isnin','Selasa','Rabu','Khamis','Jumaat','Sabtu','Ahad'];
+const TIMES=['8:00 AM','9:00 AM','10:00 AM','11:00 AM','12:00 PM','2:00 PM','3:00 PM','4:00 PM','5:00 PM'];
+const SCREENING_BANK={
+  'Stres':['Saya rasa sukar untuk bertenang.','Saya rasa terlalu banyak perkara perlu dibuat dalam satu masa.','Saya mudah rasa tegang atau cepat marah.','Saya sukar berhenti memikirkan masalah harian.','Saya rasa letih walaupun sudah berehat.'],
+  'Kebimbangan':['Saya kerap rasa risau tanpa sebab yang jelas.','Saya sukar mengawal fikiran yang membimbangkan.','Saya rasa gelisah atau tidak senang duduk.','Saya sukar fokus kerana terlalu banyak berfikir.','Saya rasa takut sesuatu yang buruk mungkin berlaku.'],
+  'Emosi':['Saya kurang minat melakukan perkara yang biasa saya suka.','Mood saya mudah berubah atau rasa kosong.','Saya rasa kurang motivasi untuk memulakan aktiviti.','Tidur atau selera makan saya berubah daripada biasa.','Saya rasa sukar menjalankan rutin harian seperti biasa.']
+};
+const SCREENING_OPTIONS=[{label:'Tidak pernah',value:0},{label:'Beberapa hari',value:1},{label:'Lebih separuh hari',value:2},{label:'Hampir setiap hari',value:3}];
+let activeScreening=null;
+
+const DOCTORS={general:['Dr. Aisha Rahman','Dr. Marcus Tan'],clinical:['Dr. Priya Nair','Dr. Farhan Idris'],child:['Dr. Wei Ling Chong','Dr. Daniel Ooi'],counseling:['Dr. Sarah Lim','Dr. Kumar Devan']};
+const ARTICLES=[
+{tag:'Stres',title:'Cara mengurus stres harian',body:'Stres boleh berlaku apabila tugasan, keluarga atau pelajaran terasa terlalu berat.',steps:['Tulis punca stres dan pilih satu perkara kecil untuk diselesaikan dahulu.','Guna teknik pernafasan 4-4-4: tarik nafas 4 saat, tahan 4 saat, hembus 4 saat.','Bahagikan kerja kepada langkah kecil dan buat rehat 5 minit selepas 25 minit fokus.','Kurangkan kafein jika ia membuatkan badan rasa gelisah.','Berbincang dengan orang yang dipercayai atau buat janji temu jika stres berpanjangan.']},
+{tag:'Kebimbangan',title:'Cara mengurangkan kebimbangan',body:'Kebimbangan boleh menyebabkan rasa risau berlebihan, sukar fokus, degupan jantung laju dan badan tegang.',steps:['Namakan perasaan itu: “Saya sedang rasa bimbang”, kemudian fokus pada perkara yang boleh dikawal.','Cuba grounding 5-4-3-2-1: lihat 5 benda, sentuh 4 benda, dengar 3 bunyi, hidu 2 bau, rasa 1 perkara.','Hadkan semakan berulang seperti mesej, berita atau media sosial jika ia mencetuskan risau.','Sediakan rutin tidur dan makan yang konsisten.','Dapatkan bantuan profesional jika kebimbangan mengganggu sekolah, kerja, tidur atau hubungan.']},
+{tag:'Emosi',title:'Cara stabilkan emosi dan mood',body:'Perubahan emosi boleh berlaku kerana tekanan, kurang tidur, konflik atau keletihan mental.',steps:['Catat mood harian dan situasi yang mencetuskan perubahan emosi.','Buat aktiviti ringan yang pernah membantu seperti berjalan, mandi air suam atau susun bilik.','Jangan buat keputusan besar ketika emosi sangat kuat; beri masa untuk tenang dahulu.','Kekalkan hubungan sosial walaupun hanya mesej ringkas kepada orang dipercayai.','Jumpa pegawai kesihatan jika mood rendah berterusan atau menjejaskan rutin harian.']},
+{tag:'Tidur',title:'Cara atasi masalah tidur',body:'Tidur yang terganggu boleh menjejaskan fokus, emosi dan kesihatan badan.',steps:['Tetapkan waktu tidur dan bangun yang hampir sama setiap hari.','Elakkan skrin 30-60 minit sebelum tidur atau gunakan mod malam.','Pastikan bilik gelap, sejuk dan selesa.','Jika tidak boleh tidur selepas beberapa ketika, bangun sekejap dan buat aktiviti tenang seperti membaca.','Kurangkan tidur siang yang terlalu lama dan elakkan kafein pada lewat petang.']},
+{tag:'Panik',title:'Apa yang boleh dibuat semasa panik',body:'Panik boleh terasa menakutkan, tetapi biasanya akan menurun apabila badan kembali tenang.',steps:['Duduk di tempat selamat dan cuba hembus nafas perlahan lebih panjang daripada tarik nafas.','Letakkan kaki di lantai dan fokus pada benda yang boleh dilihat di sekeliling.','Ingatkan diri: “Ini rasa panik, ia akan berlalu.”','Minum air perlahan-lahan jika sesuai.','Dapatkan penilaian doktor jika episod panik kerap berlaku atau mengganggu aktiviti.']},
+{tag:'Hubungan',title:'Cara urus konflik keluarga atau hubungan',body:'Konflik boleh memberi tekanan emosi jika tidak diurus dengan jelas dan tenang.',steps:['Pilih masa bercakap apabila kedua-dua pihak lebih tenang.','Guna ayat “saya rasa...” berbanding menyalahkan.','Tetapkan had yang sihat jika perbualan menjadi terlalu tegang.','Fokus pada satu isu dahulu, bukan semua perkara sekali gus.','Dapatkan bantuan kaunselor jika konflik berulang dan sukar diselesaikan.']}
+];
+function loadDB(){
+  const saved = JSON.parse(localStorage.getItem(STORE)||'null');
+  db = saved || defaultDB();
+  db.settings ??= {hospital:'Hospital Sungai Buloh',portal:'MindCare Hospital Portal'};
+  db.users ??= [];
+  db.appointments ??= [];
+  db.qa ??= [];
+  db.screenings ??= [];
+  db.activity ??= [];
+  db.schedule ??= defaultDB().schedule;
+  return db;
+}
+let db;loadDB();let currentUser=null,currentRole='patient',authRole='patient',selectedSlot=null,activeEduTag='Semua';
+function defaultDB(){let schedule={};Object.values(DOCTORS).flat().forEach(d=>{schedule[d]={};DAYS.forEach(day=>schedule[d][day]={status:(day==='Sabtu'||day==='Ahad')?'Cuti':'Bertugas',start:'9:00 AM',end:'5:00 PM',note:''})});return{settings:{hospital:'Hospital Sungai Buloh',portal:'MindCare Hospital Portal'},users:[],appointments:[],qa:[],screenings:[],activity:[],schedule}}
+function saveDB(){localStorage.setItem(STORE,JSON.stringify(db))}
+function reloadDB(){loadDB();}
+function id(){return Date.now().toString(36)+Math.random().toString(36).slice(2,7)}
+function modal(i,t,b){modalIcon.textContent=i;modalTitle.textContent=t;modalBody.textContent=b;modalOverlay.classList.add('active')}function closeModal(){modalOverlay.classList.remove('active')}modalOverlay.addEventListener('click',e=>{if(e.target.id==='modalOverlay')closeModal()});
+function setAuthRole(r){authRole=r;rolePatient.classList.toggle('active',r==='patient');roleStaff.classList.toggle('active',r==='staff');loginHint.textContent=r==='staff'?'Staff demo: username staff, password staff123.':'Guest boleh log masuk tanpa akaun, atau daftar akaun pesakit dahulu.'}
+[loginUser,loginPass,regName,regIC,regPhone,regEmail,regUser,regPass,regConfirmPass].forEach(el=>el.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault(); if([regName,regIC,regPhone,regEmail,regUser,regPass,regConfirmPass].includes(e.target))registerPatient(); else login();}}));
+function openRegisterPage(){auth.classList.add('hide');registerAuth.classList.remove('hide');regName.focus()}function backToLogin(){registerAuth.classList.add('hide');auth.classList.remove('hide');loginUser.focus()}function registerPatient(){const name=regName.value.trim(),ic=regIC.value.trim(),phone=regPhone.value.trim(),email=regEmail.value.trim(),user=regUser.value.trim(),pass=regPass.value.trim(),confirmPass=regConfirmPass.value.trim();if(!name||!email||!user||!pass||!confirmPass)return modal('⚠️','Maklumat tidak lengkap','Sila isi nama, emel, username, password dan sahkan password.');if(pass!==confirmPass)return modal('⚠️','Password tidak sama','Sila pastikan password dan sahkan password adalah sama.');if(db.users.some(u=>u.user===user))return modal('⚠️','Username sudah wujud','Sila pilih username lain.');db.users.push({id:id(),name,ic,phone,email,user,pass,role:'patient'});db.activity.unshift('Akaun pesakit baharu didaftarkan: '+name);saveDB();loginUser.value=user;loginPass.value='';setAuthRole('patient');regName.value=regIC.value=regPhone.value=regEmail.value=regUser.value=regPass.value=regConfirmPass.value='';backToLogin();modal('✅','Akaun berjaya didaftarkan','Username telah diisi pada login page. Masukkan password dan tekan Enter untuk log masuk.');setTimeout(()=>loginPass.focus(),200)}
+function login(){const user=loginUser.value.trim(),pass=loginPass.value.trim();if(authRole==='staff'){if((user==='staff'||user==='admin')&&pass==='staff123')return enterPortal('staff',{id:'staff',name:'Staff Psikologi',user:'staff',email:'staff@hospital.demo',role:'staff'});return modal('⚠️','Login staff gagal','Gunakan username staff dan password staff123.')}let u=db.users.find(x=>x.user===user&&x.pass===pass);if(!u)u={id:'guest-'+(user||'patient'),name:user||'Guest Patient',user:user||'guest',email:'guest@example.com',role:'patient'};enterPortal('patient',u)}
+function enterPortal(role,u){reloadDB();currentUser=u;currentRole=role;auth.classList.add('hide');portal.classList.remove('hide');currentUserPill.textContent=u.name;dropdownUserName.textContent=u.name;dropdownUserRole.textContent=role==='staff'?'Staff Portal Profesional':'Portal Pesakit';profileAvatar.textContent=(u.name||'G').trim().charAt(0).toUpperCase();roleSubtitle.textContent=role==='staff'?'Staff Portal Profesional':'Portal Pesakit';patientNav.classList.toggle('hide',role==='staff');staffNav.classList.toggle('hide',role!=='staff');document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('active'));if(role==='staff'){sOverview.classList.add('active');staffNav.querySelector('button').classList.add('active')}else{pHome.classList.add('active');patientNav.querySelector('button').classList.add('active');apptName.value=u.name||'';apptEmail.value=u.email||'';profileName.value=u.name||'';profileEmail.value=u.email||'';if(typeof settingsName!=='undefined'){settingsName.value=u.name||'';settingsEmail.value=u.email||''}}refreshAll()}
+function logout(){profileDropdown?.classList.remove('active');portal.classList.add('hide');auth.classList.remove('hide');currentUser=null;currentRole='patient';loginPass.value=''}
+function showPage(pid,btn){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById(pid).classList.add('active');let nav=btn.closest('.nav');nav.querySelectorAll('button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');refreshAll()}function openStaffTab(pid){const btn=[...document.querySelectorAll('#staffNav button')].find(b=>b.getAttribute('onclick').includes("'"+pid+"'"));showPage(pid,btn)}function openPatientTab(pid){const btn=[...document.querySelectorAll('#patientNav button')].find(b=>b.getAttribute('onclick').includes("'"+pid+"'"));showPage(pid,btn)}
+function toggleProfileMenu(e){e.stopPropagation();profileDropdown.classList.toggle('active')}document.addEventListener('click',e=>{if(profileDropdown&&!profileDropdown.contains(e.target)&&!e.target.closest('.profile-trigger'))profileDropdown.classList.remove('active')});function openHeaderMenuPage(type){profileDropdown.classList.remove('active');if(currentRole==='staff'){if(type==='inbox')return openStaffTab('sQA');if(type==='settings'||type==='profile')return openStaffTab('sSettings');if(type==='appointments')return openStaffTab('sAppointments');return openStaffTab('sOverview')}const map={profile:'pProfile',inbox:'pInbox',settings:'pSettings',appointments:'pAppointments'};openPatientPageDirect(map[type]||'pHome')}function openPatientPageDirect(pid){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById(pid).classList.add('active');document.querySelectorAll('#patientNav button').forEach(b=>b.classList.remove('active'));let btn=[...document.querySelectorAll('#patientNav button')].find(b=>b.getAttribute('onclick').includes("'"+pid+"'"));if(btn)btn.classList.add('active');refreshAll()}
+function deptLabel(v){return{general:'Psikologi Umum',clinical:'Psikologi Klinikal',child:'Kanak-kanak & Remaja',counseling:'Kaunseling & Kesejahteraan'}[v]||v}function esc(s){let d=document.createElement('div');d.textContent=s||'';return d.innerHTML}function dayName(dateStr){return DAYS[(new Date(dateStr+'T00:00:00').getDay()+6)%7]}
+function renderDoctorOptions(){let list=DOCTORS[apptDept.value]||[];apptDoctor.innerHTML=list.map(d=>`<option>${d}</option>`).join('');schedDoctor.innerHTML=Object.values(DOCTORS).flat().map(d=>`<option>${d}</option>`).join('')}
+function slotsFor(doctor,date){if(!date)return[];let day=dayName(date),s=(db.schedule[doctor]||{})[day];if(!s||s.status==='Cuti')return[];let si=TIMES.indexOf(s.start),ei=TIMES.indexOf(s.end);return TIMES.filter((t,i)=>i>=si&&i<ei)}
+function renderSlots(){selectedSlot=null;let arr=slotsFor(apptDoctor.value,apptDate.value);apptSlots.innerHTML=arr.length?arr.map(s=>`<button class="btn btn-outline slot" onclick="selectSlot(this,'${s}')">${s}</button>`).join(''):'<p class="muted">Tiada slot. Pilih tarikh lain atau doktor lain.</p>'}function selectSlot(btn,s){selectedSlot=s;document.querySelectorAll('.slot').forEach(b=>b.classList.remove('selected'));btn.classList.add('selected')}
+function bookAppointment(){
+  reloadDB();
+  const name=apptName.value.trim(),email=apptEmail.value.trim(),date=apptDate.value,doctor=apptDoctor.value,dept=apptDept.value,note=apptNote.value.trim();
+  if(!name||!email||!date||!selectedSlot)return modal('⚠️','Maklumat tidak lengkap','Sila isi nama, emel, tarikh dan pilih slot.');
+  if(!slotsFor(doctor,date).includes(selectedSlot))return modal('⚠️','Slot tidak tersedia','Sila pilih semula slot yang tersedia.');
+  const appt={id:id(),patientId:currentUser?.id||'guest',name,email,dept,doctor,date,time:selectedSlot,note,status:'Menunggu',created:new Date().toLocaleString(),source:'patient-submit'};
+  db.appointments.push(appt);
+  db.activity.unshift(`TEMPAHAN BARU: ${name} dengan ${doctor} pada ${date} ${selectedSlot}`);
+  saveDB();
+  apptNote.value=''; selectedSlot=null;
+  modal('📅','Tempahan dihantar','Tempahan kamu telah masuk ke Staff Portal di tab Janji Temu dengan status Menunggu.');
+  refreshAll();
+}
+function myAppointments(){return db.appointments.filter(a=>a.patientId===currentUser?.id||a.email===currentUser?.email)}function renderMyAppointments(){let arr=myAppointments().slice().reverse();apptList.innerHTML=arr.length?arr.map(a=>`<div class="article" style="margin-bottom:10px"><b>${a.doctor}</b><br><span class="muted">${a.date} • ${a.time} • ${deptLabel(a.dept)}</span><br>${statusBadge(a.status)}<p class="small">${esc(a.note)}</p></div>`).join(''):'<p class="muted">Tiada janji temu.</p>';myApptCount.textContent=arr.length;myLatestAppt.innerHTML=arr[0]?`<b>${arr[0].doctor}</b><p class="muted">${arr[0].date} • ${arr[0].time}</p>${statusBadge(arr[0].status)}`:'<p class="muted">Tiada rekod terkini.</p>'}
+function submitQA(){let text=qaText.value.trim();if(!text)return modal('⚠️','Soalan kosong','Sila tulis soalan dahulu.');db.qa.push({id:id(),patientId:currentUser.id,name:currentUser.name,category:qaCategory.value,text,priority:qaPriority.value,status:'Pending',reply:'',date:new Date().toLocaleString()});db.activity.unshift('Soalan pesakit baharu: '+currentUser.name);qaText.value='';saveDB();modal('✅','Soalan dihantar','Staff akan semak dan membalas dalam portal.');refreshAll()}function myQA(){return db.qa.filter(q=>q.patientId===currentUser?.id)}function renderMyQA(){let arr=myQA().slice().reverse();qaMyList.innerHTML=arr.length?arr.map(q=>`<div class="article" style="margin-bottom:10px"><b>${q.category}</b> ${priorityBadge(q.priority)}<p>${esc(q.text)}</p><p class="small">Status: ${q.status}</p>${q.reply?`<div class="notice">Balasan staff: ${esc(q.reply)}</div>`:''}</div>`).join(''):'<p class="muted">Tiada soalan.</p>';myQACount.textContent=arr.length}
+function startScreening(type){activeScreening={type,idx:0,answers:new Array(SCREENING_BANK[type].length).fill(null)};screeningPicker.classList.add('hide');screeningResultBox.classList.add('hide');screeningRunner.classList.remove('hide');renderScreeningQuestion()}
+function resetScreeningView(){activeScreening=null;screeningPicker.classList.remove('hide');screeningRunner.classList.add('hide');screeningResultBox.classList.add('hide')}
+function renderScreeningQuestion(){if(!activeScreening)return;let qs=SCREENING_BANK[activeScreening.type],idx=activeScreening.idx;screeningTitle.textContent=activeScreening.type;screeningProgressText.textContent=`Soalan ${idx+1}/${qs.length}`;screeningProgressBar.style.width=`${(idx/qs.length)*100}%`;screeningQuestion.textContent=qs[idx];screeningOptions.innerHTML=SCREENING_OPTIONS.map(o=>`<button class="btn ${activeScreening.answers[idx]===o.value?'btn-primary':'btn-outline'}" style="text-align:left" onclick="chooseScreeningAnswer(${o.value})">${o.label}</button>`).join('');screenBackBtn.disabled=idx===0;screenBackBtn.style.opacity=idx===0?'.55':'1';screenNextBtn.textContent=idx===qs.length-1?'Lihat Keputusan':'Seterusnya';screenNextBtn.disabled=activeScreening.answers[idx]===null;screenNextBtn.style.opacity=activeScreening.answers[idx]===null?'.55':'1'}
+function chooseScreeningAnswer(v){activeScreening.answers[activeScreening.idx]=v;renderScreeningQuestion()}
+function screeningBack(){if(activeScreening&&activeScreening.idx>0){activeScreening.idx--;renderScreeningQuestion()}}
+function screeningNext(){if(!activeScreening)return;let qs=SCREENING_BANK[activeScreening.type];if(activeScreening.answers[activeScreening.idx]===null)return;if(activeScreening.idx<qs.length-1){activeScreening.idx++;renderScreeningQuestion()}else{finishScreening()}}
+function finishScreening(){let type=activeScreening.type;let score=activeScreening.answers.reduce((a,b)=>a+b,0);let risk=score>=11?'Urgent':score>=6?'Medium':'Low';let action=risk==='Urgent'?'Disaran untuk hubungi pihak klinikal dan buat susulan secepat mungkin.':risk==='Medium'?'Disaran untuk buat janji temu dalam masa terdekat dan amalkan langkah penjagaan diri.':'Teruskan penjagaan diri, pantau keadaan dan rujuk bahan pendidikan yang sesuai.';db.screenings.push({id:id(),patientId:currentUser.id,name:currentUser.name,type,score,risk,action,date:new Date().toLocaleString()});db.activity.unshift(`Saringan ${type}: ${currentUser.name} (${risk})`);saveDB();screeningRunner.classList.add('hide');screeningResultBox.classList.remove('hide');screeningResultBox.innerHTML=`<div class="card"><span class="badge ${risk==='Low'?'low':risk==='Medium'?'med':'urgent'}">${risk}</span><h3 style="margin-top:10px">Keputusan ${type}</h3><p>Skor kamu: <b>${score}</b> / 15</p><p class="muted">${action}</p><div class="toolbar"><button class="btn btn-primary" onclick="openPatientTab('pAppointments')">Tempah Janji Temu</button><button class="btn btn-soft" onclick="openPatientTab('pEducation')">Lihat Cara Atasi</button><button class="btn btn-outline" onclick="resetScreeningView()">Ambil Saringan Lain</button></div></div>`;activeScreening=null;refreshAll()}
+function renderMyScreenings(){let arr=db.screenings.filter(s=>s.patientId===currentUser?.id).slice().reverse();myScreeningBody.innerHTML=arr.length?arr.map(s=>`<tr><td>${s.type}</td><td>${s.score}</td><td>${priorityBadge(s.risk)}</td><td>${s.action}</td><td>${s.date}</td></tr>`).join(''):'<tr><td colspan="5" class="muted">Tiada rekod saringan.</td></tr>';myScreenCount.textContent=arr.length}
+function submitEmergency(){let note=emergNote.value.trim();db.qa.push({id:id(),patientId:currentUser.id,name:currentUser.name,category:'Bantuan Segera',text:note||'Memerlukan susulan staff.',priority:'Urgent',status:'Pending',reply:'',date:new Date().toLocaleString()});db.activity.unshift('Kes keutamaan baharu: '+currentUser.name);saveDB();emergNote.value='';modal('🚩','Tanda keutamaan dihantar','Staff akan nampak rekod ini dalam tab Kes Keutamaan.');refreshAll()}
+function saveProfile(){if(!currentUser||currentUser.id.startsWith('guest-'))return modal('ℹ️','Akaun guest','Profil guest tidak disimpan. Daftar akaun pesakit untuk simpan kekal.');let u=db.users.find(x=>x.id===currentUser.id);if(u){u.name=profileName.value.trim()||u.name;u.email=profileEmail.value.trim()||u.email;currentUser=u;currentUserPill.textContent=u.name;saveDB();modal('✅','Profil disimpan','Maklumat akaun telah dikemas kini.');refreshAll()}}
+function statusBadge(s){let c=s==='Diluluskan'?'low':s==='Menunggu'?'med':s==='Ditolak'?'urgent':s==='Selesai'?'info':'purple';return`<span class="badge ${c}">${s}</span>`}function priorityBadge(p){let c=p==='Urgent'?'urgent':p==='Medium'?'med':'low';return`<span class="badge ${c}">${p}</span>`}
+function renderStaffAppointments(){
+  if(currentRole==='staff') reloadDB();
+  let q=(apptSearch?.value||'').toLowerCase(),f=apptStatusFilter?.value||'all';
+  let arr=db.appointments.filter(a=>(f==='all'||a.status===f)&&[a.name,a.email,a.doctor,deptLabel(a.dept),a.note,a.created].join(' ').toLowerCase().includes(q));
+  staffApptBody.innerHTML=arr.length?arr.slice().reverse().map(a=>`<tr><td><b>${esc(a.name)}</b><br><span class="small">${esc(a.note||'Tiada nota')}</span><br><span class="small">Dihantar: ${esc(a.created||'-')}</span></td><td>${esc(a.email)}</td><td>${deptLabel(a.dept)}</td><td>${esc(a.doctor)}</td><td>${esc(a.date)}<br><span class="muted">${esc(a.time)}</span></td><td>${statusBadge(a.status)}</td><td><div class="actions"><button class="btn btn-green" onclick="setApptStatus('${a.id}','Diluluskan')">Lulus</button><button class="btn btn-amber" onclick="setApptStatus('${a.id}','Selesai')">Selesai</button><button class="btn btn-danger" onclick="setApptStatus('${a.id}','Ditolak')">Tolak</button></div></td></tr>`).join(''):'<tr><td colspan="7" class="muted">Tiada rekod janji temu. Pastikan patient tekan Hantar Tempahan selepas pilih slot.</td></tr>'
+}
+function setApptStatus(idv,st){reloadDB();let a=db.appointments.find(x=>x.id===idv);if(a){a.status=st;db.activity.unshift(`Status janji temu ${a.name} ditukar kepada ${st}`);saveDB();refreshAll()}}
+function renderPatients(){let q=(patientSearch?.value||'').toLowerCase();let patients=[...db.users,{id:'guest',name:'Guest Patient',user:'guest',email:'guest@example.com'}].filter(u=>[u.name,u.user,u.email].join(' ').toLowerCase().includes(q));patientBody.innerHTML=patients.length?patients.map(u=>{let ap=db.appointments.filter(a=>a.patientId===u.id||a.email===u.email).length, qa=db.qa.filter(x=>x.patientId===u.id).length, sc=db.screenings.filter(s=>s.patientId===u.id).slice(-1)[0];return`<tr><td><b>${esc(u.name)}</b></td><td>${esc(u.user)}</td><td>${esc(u.email)}</td><td>${ap}</td><td>${qa}</td><td>${sc?priorityBadge(sc.risk):'<span class="muted">Tiada</span>'}</td><td><button class="btn btn-soft" onclick="filterPatient('${esc(u.name)}')">Lihat rekod</button></td></tr>`}).join(''):'<tr><td colspan="7" class="muted">Tiada pesakit.</td></tr>'}function filterPatient(n){apptSearch.value=n;openStaffTab('sAppointments')}
+function renderStaffQA(){let f=qaFilter?.value||'all',q=(qaStaffSearch?.value||'').toLowerCase();let arr=db.qa.filter(x=>(f==='all'||x.status===f||x.priority===f)&&[x.name,x.category,x.text,x.reply].join(' ').toLowerCase().includes(q));staffQABody.innerHTML=arr.length?arr.slice().reverse().map(x=>`<tr><td>${esc(x.name)}</td><td>${x.category}</td><td>${priorityBadge(x.priority)}</td><td>${esc(x.text)}</td><td>${x.status}</td><td><input id="reply-${x.id}" value="${esc(x.reply)}" placeholder="Tulis balasan"></td><td><button class="btn btn-primary" onclick="replyQA('${x.id}')">Simpan Balasan</button></td></tr>`).join(''):'<tr><td colspan="7" class="muted">Tiada soalan.</td></tr>'}function replyQA(idv){let q=db.qa.find(x=>x.id===idv);let inp=document.getElementById('reply-'+idv);if(q&&inp){q.reply=inp.value.trim();q.status='Dijawab';db.activity.unshift('Soalan dijawab untuk '+q.name);saveDB();refreshAll()}}
+function renderScreenings(){let f=screenRiskFilter?.value||'all';let arr=db.screenings.filter(s=>f==='all'||s.risk===f);staffScreeningBody.innerHTML=arr.length?arr.slice().reverse().map(s=>`<tr><td>${esc(s.name)}</td><td>${s.type}</td><td>${s.score}</td><td>${priorityBadge(s.risk)}</td><td>${s.action}</td><td>${s.date}</td></tr>`).join(''):'<tr><td colspan="6" class="muted">Tiada saringan.</td></tr>'}
+function renderUrgent(){let qa=db.qa.filter(q=>q.priority==='Urgent'&&q.status==='Pending'),sc=db.screenings.filter(s=>s.risk==='Urgent');let html='';qa.forEach(q=>html+=`<div class="article" style="margin-bottom:10px"><b>Soalan: ${esc(q.name)}</b> ${priorityBadge(q.priority)}<p>${esc(q.text)}</p><button class="btn btn-soft" onclick="openStaffTab('sQA')">Balas Soalan</button></div>`);sc.forEach(s=>html+=`<div class="article" style="margin-bottom:10px"><b>Saringan: ${esc(s.name)}</b> ${priorityBadge(s.risk)}<p>${s.type} • Skor ${s.score}</p><button class="btn btn-soft" onclick="openStaffTab('sScreenings')">Lihat Saringan</button></div>`);urgentCases.innerHTML=html||'<p class="muted">Tiada kes keutamaan terbuka.</p>'}
+function initScheduleControls(){schedStart.innerHTML=TIMES.map(t=>`<option>${t}</option>`).join('');schedEnd.innerHTML=TIMES.map(t=>`<option>${t}</option>`).join('')}function loadScheduleForm(){let d=schedDoctor.value,day=schedDay.value,s=db.schedule[d]?.[day];if(!s)return;schedStatus.value=s.status;schedStart.value=s.start;schedEnd.value=s.end;schedNote.value=s.note||''}function saveDoctorSchedule(){let d=schedDoctor.value,day=schedDay.value;db.schedule[d]??={};db.schedule[d][day]={status:schedStatus.value,start:schedStart.value,end:schedEnd.value,note:schedNote.value.trim()};db.activity.unshift(`Jadual ${d} pada ${day} dikemas kini: ${schedStatus.value}`);saveDB();modal('✅','Jadual disimpan','Slot pesakit akan ikut jadual baharu.');refreshAll()}function resetSchedule(){let d=schedDoctor.value;DAYS.forEach(day=>db.schedule[d][day]={status:(day==='Sabtu'||day==='Ahad')?'Cuti':'Bertugas',start:'9:00 AM',end:'5:00 PM',note:''});saveDB();refreshAll();modal('✅','Jadual direset','Jadual doktor telah kembali kepada tetapan asal.')}function renderSchedule(){renderDoctorOptions();let d=schedDoctor.value||Object.values(DOCTORS).flat()[0];doctorSchedule.innerHTML=DAYS.map(day=>{let s=db.schedule[d]?.[day]||{};return`<div class="day"><b>${day}</b><span>${s.status||'-'}</span><span>${s.status==='Cuti'?'Tiada slot':(s.start+' - '+s.end)}</span><span>${esc(s.note||'')}</span></div>`}).join('');loadScheduleForm()}
+function renderOverview(){stAppt.textContent=db.appointments.length;stPending.textContent=db.appointments.filter(a=>a.status==='Menunggu').length;stQA.textContent=db.qa.filter(q=>q.status==='Pending').length;stUrgent.textContent=db.qa.filter(q=>q.priority==='Urgent'&&q.status==='Pending').length+db.screenings.filter(s=>s.risk==='Urgent').length;latestAppointments.innerHTML=db.appointments.slice(-5).reverse().map(a=>`<button class="article click-card" style="width:100%;text-align:left;margin-bottom:10px" onclick="openStaffTab('sAppointments')"><b>${esc(a.name)}</b> — ${a.date} ${a.time}<br><span class="muted">${a.doctor} • ${a.status}</span></button>`).join('')||'<p class="muted">Tiada janji temu.</p>';activityFeed.innerHTML=db.activity.slice(0,8).map(a=>`<button class="article click-card" style="width:100%;text-align:left;margin-bottom:10px" onclick="openStaffTab('sReports')">• ${esc(a)}</button>`).join('')||'<p class="muted">Tiada aktiviti.</p>'}
+function renderReports(){let counts=s=>db.appointments.filter(a=>a.status===s).length;reportAppt.innerHTML=`Menunggu: <b>${counts('Menunggu')}</b><br>Diluluskan: <b>${counts('Diluluskan')}</b><br>Selesai: <b>${counts('Selesai')}</b><br>Ditolak: <b>${counts('Ditolak')}</b>`;let risks=['Low','Medium','Urgent'];reportScreen.innerHTML=risks.map(r=>`${r}: <b>${db.screenings.filter(s=>s.risk===r).length}</b>`).join('<br>');reportProductivity.innerHTML=`Soalan dijawab: <b>${db.qa.filter(q=>q.status==='Dijawab').length}</b><br>Soalan pending: <b>${db.qa.filter(q=>q.status==='Pending').length}</b><br>Jumlah pesakit: <b>${db.users.length}</b>`}function generateReportText(){reportText.value=`Ringkasan ${new Date().toLocaleString()}\nJumlah janji temu: ${db.appointments.length}\nJanji temu menunggu: ${db.appointments.filter(a=>a.status==='Menunggu').length}\nSoalan pending: ${db.qa.filter(q=>q.status==='Pending').length}\nKes keutamaan: ${db.qa.filter(q=>q.priority==='Urgent'&&q.status==='Pending').length+db.screenings.filter(s=>s.risk==='Urgent').length}`}
+function renderEducation(){
+  let q=(eduSearch?.value||'').toLowerCase();
+  let tags=['Semua',...new Set(ARTICLES.map(a=>a.tag))];
+  if(typeof eduTotal!=='undefined') eduTotal.textContent=ARTICLES.length;
+  if(typeof eduFilters!=='undefined') eduFilters.innerHTML=tags.map(t=>`<button class="${activeEduTag===t?'active':''}" onclick="activeEduTag='${esc(t)}';renderEducation()">${esc(t)}</button>`).join('');
+  let list=ARTICLES.map((a,i)=>({...a,originalIndex:i})).filter(a=>(activeEduTag==='Semua'||a.tag===activeEduTag)&&[a.tag,a.title,a.body,...a.steps].join(' ').toLowerCase().includes(q));
+  educationGrid.innerHTML=list.length?list.map((a)=>{
+    let icon={Depresi:'🌧️',Kebimbangan:'🌀',Stres:'🧠',Tidur:'🌙',Hubungan:'🤝'}[a.tag]||'📘';
+    return `<div class="edu-card">
+      <div class="edu-card-top">
+        <div class="edu-tagline"><span class="badge info">${esc(a.tag)}</span><div class="edu-icon">${icon}</div></div>
+        <h3>${esc(a.title)}</h3>
+        <p class="muted" style="margin:0">${esc(a.body)}</p>
+      </div>
+      <div class="edu-body">
+        <p class="edu-section-title">Cara atasi / langkah praktikal</p>
+        <ul class="step-list">${a.steps.map((step,idx)=>`<li><b>${idx+1}</b><span>${esc(step)}</span></li>`).join('')}</ul>
+        <div class="warning-note"><b>Nota:</b> Jika simptom semakin mengganggu rutin harian, dapatkan penilaian profesional atau buat janji temu.</div>
+        <div class="edu-actions"><button class="btn btn-soft" onclick="showEducationDetail(${a.originalIndex})">Ringkasan</button><button class="btn btn-outline" onclick="openPatientTab('pAppointments')">Tempah Janji Temu</button></div>
+      </div>
+    </div>`
+  }).join(''):'<div class="empty-edu">Tiada topik ditemui. Cuba cari perkataan lain seperti stres, tidur, anxiety atau hubungan.</div>'
+}
+function showEducationDetail(i){let a=ARTICLES[i];modal('📚',a.title,a.body+'\n\nCara atasi: '+a.steps.join(' • '))}
+function renderProfile(){if(!currentUser)return;profileSummary.innerHTML=`<p><b>Nama:</b> ${esc(currentUser.name)}</p><p><b>Emel:</b> ${esc(currentUser.email)}</p><p><b>Janji temu:</b> ${myAppointments().length}</p><p><b>Soalan:</b> ${myQA().length}</p>`;myRecentActivity.innerHTML=[...myAppointments().slice(-3).map(a=>'Janji temu: '+a.date+' '+a.time),...myQA().slice(-3).map(q=>'Soalan: '+q.category)].slice(-5).reverse().map(x=>`<div class="article" style="margin-bottom:8px">${esc(x)}</div>`).join('')||'<p class="muted">Tiada aktiviti.</p>'}
+function renderInbox(){if(!currentUser||typeof patientInboxList==='undefined')return;let items=[];myAppointments().slice().reverse().forEach(a=>items.push({icon:'📅',title:'Status Janji Temu',body:`${a.doctor} • ${a.date} ${a.time} • ${a.status}`}));myQA().slice().reverse().forEach(q=>items.push({icon:q.reply?'💬':'📨',title:q.reply?'Balasan Staff':'Soalan Diterima',body:q.reply?`${q.category}: ${q.reply}`:`${q.category} • Status: ${q.status}`}));db.screenings.filter(s=>s.patientId===currentUser.id).slice().reverse().forEach(sc=>items.push({icon:'🧭',title:'Keputusan Saringan',body:`${sc.type} • Skor ${sc.score} • Risiko ${sc.risk}`}));patientInboxList.innerHTML=items.length?items.slice(0,12).map(x=>`<div class="inbox-item"><b>${x.icon} ${esc(x.title)}</b><p class="muted" style="margin:6px 0 0">${esc(x.body)}</p></div>`).join(''):'<p class="muted">Inbox masih kosong.</p>'}
+function saveSettingsProfile(){if(!currentUser)return;if(currentUser.id.startsWith('guest-'))return modal('ℹ️','Akaun guest','Tetapan guest tidak disimpan. Daftar akaun pesakit untuk simpan kekal.');let u=db.users.find(x=>x.id===currentUser.id);if(u){u.name=settingsName.value.trim()||u.name;u.email=settingsEmail.value.trim()||u.email;currentUser=u;currentUserPill.textContent=u.name;dropdownUserName.textContent=u.name;profileAvatar.textContent=(u.name||'G').trim().charAt(0).toUpperCase();profileName.value=u.name;profileEmail.value=u.email;saveDB();modal('✅','Tetapan disimpan','Maklumat akaun telah dikemas kini.');refreshAll()}}
+function saveSettings(){db.settings.hospital=settingHospital.value||db.settings.hospital;db.settings.portal=settingPortal.value||db.settings.portal;saveDB();modal('✅','Tetapan disimpan','Maklumat sistem dikemas kini.')}function renderSettings(){settingHospital.value=db.settings.hospital;settingPortal.value=db.settings.portal}
+function seedDemoData(){if(!db.users.some(u=>u.user==='patient1'))db.users.push({id:'p1',name:'Aiman Hakim',user:'patient1',email:'aiman@example.com',pass:'123',role:'patient'});db.appointments.push({id:id(),patientId:'p1',name:'Aiman Hakim',email:'aiman@example.com',dept:'clinical',doctor:'Dr. Priya Nair',date:new Date().toISOString().slice(0,10),time:'10:00 AM',note:'Sesi pertama',status:'Menunggu',created:new Date().toLocaleString()});db.qa.push({id:id(),patientId:'p1',name:'Aiman Hakim',category:'Stres',text:'Saya rasa stres dan sukar tidur sejak kebelakangan ini.',priority:'Medium',status:'Pending',reply:'',date:new Date().toLocaleString()});db.screenings.push({id:id(),patientId:'p1',name:'Aiman Hakim',type:'Stres',score:10,risk:'Medium',action:'Disaran untuk buat janji temu.',date:new Date().toLocaleString()});db.activity.unshift('Data demo telah ditambah');saveDB();refreshAll();modal('✅','Data demo ditambah','Dashboard staff kini mempunyai contoh rekod.')}function clearDemoData(){if(confirm('Padam semua data demo dalam browser ini?')){db=defaultDB();saveDB();refreshAll();modal('✅','Data dipadam','Semua data demo telah direset.')}}
+function csv(rows){return rows.map(r=>r.map(v=>'"'+String(v??'').replaceAll('"','""')+'"').join(',')).join('\n')}function download(name,text){let a=document.createElement('a');a.href=URL.createObjectURL(new Blob([text],{type:'text/csv'}));a.download=name;a.click()}function exportCSV(){download('mindcare-report.csv',csv([['Type','Name','Email','Doctor/Category','Date','Status'],...db.appointments.map(a=>['Appointment',a.name,a.email,a.doctor,a.date+' '+a.time,a.status]),...db.qa.map(q=>['QA',q.name,'',q.category,q.date,q.status]),...db.screenings.map(s=>['Screening',s.name,'',s.type,s.date,s.risk])]))}function exportPatients(){download('mindcare-patients.csv',csv([['Name','Username','Email'],...db.users.map(u=>[u.name,u.user,u.email])]))}function printTable(idv){window.print()}
+function refreshAll(){if(currentRole==='staff') reloadDB();renderDoctorOptions();renderSlots();renderEducation();if(currentUser){renderMyAppointments();renderMyQA();renderMyScreenings();renderProfile();renderInbox();if(typeof settingsName!=='undefined'){settingsName.value=currentUser.name||'';settingsEmail.value=currentUser.email||''}}renderOverview();renderStaffAppointments();renderPatients();renderStaffQA();renderScreenings();renderUrgent();renderSchedule();renderReports();renderSettings()}initScheduleControls();refreshAll();
 </script>
-</body>
-</html>
+</body></html>
